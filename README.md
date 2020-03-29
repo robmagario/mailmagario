@@ -1,4 +1,4 @@
-# babynames
+# mailmagario
 
 A new Flutter project.
 
