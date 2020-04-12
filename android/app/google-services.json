@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "283339848967",
-    "firebase_url": "https://mailmagario-3d674.firebaseio.com",
-    "project_id": "mailmagario-3d674",
-    "storage_bucket": "mailmagario-3d674.appspot.com"
+    "project_number": "563039850194",
+    "firebase_url": "https://mailmagario.firebaseio.com",
+    "project_id": "mailmagario",
+    "storage_bucket": "mailmagario.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:283339848967:android:ad10ad8bd78ca8023b99a2",
+        "mobilesdk_app_id": "1:563039850194:android:b6b422c43f914a895ca70b",
         "android_client_info": {
           "package_name": "com.example.mailmagario"
         }
       },
       "oauth_client": [
         {
-          "client_id": "283339848967-p3vm4l2e9hkm8j02qdnapq4kp6rm6fhn.apps.googleusercontent.com",
+          "client_id": "563039850194-5tgpe7okckmabku842icgvpbf39tumma.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.mailmagario",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "283339848967-l0d6hrifalj385o2tbqr7b9gkqt7rnq5.apps.googleusercontent.com",
+          "client_id": "563039850194-8a126uiedv72afugh74sqtmu53nvdb5p.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyClMCMl_zDuk8YMybsQ2vFsE48ZtF3j_1k"
+          "current_key": "AIzaSyCJ5z8Oz8rw2hGrQpU-8tQqpwlBo6q4oMw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "283339848967-l0d6hrifalj385o2tbqr7b9gkqt7rnq5.apps.googleusercontent.com",
+              "client_id": "563039850194-8a126uiedv72afugh74sqtmu53nvdb5p.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
