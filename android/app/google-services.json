@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "563039850194-5tgpe7okckmabku842icgvpbf39tumma.apps.googleusercontent.com",
+          "client_id": "563039850194-442q0mkfk7gmmpqvuq0vtugbgls5r30l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.mailmagario",
-            "certificate_hash": "e2ab809e8bedccd2167c7eab83d48afc780a3f60"
+            "certificate_hash": "330abb8d2df892f022626c36ad95a823e837661e"
           }
         },
         {
