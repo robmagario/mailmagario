@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Baby Names',
+      title: 'Stork',
       home: MyHomePage(),
     );
   }
@@ -24,10 +24,28 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Baby Name Votes')),
+      appBar: AppBar(title: Text('Stork')),
       body: _buildBody(context),
+      bottomNavigationBar: new BottomAppBar(
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(onPressed: () {}, icon: Icon(Icons.menu),),
+          ],
+        ),
+      ),
+      floatingActionButton: new FloatingActionButton.extended(
+        icon: Icon(Icons.attach_money ),
+        label: Text('See shipping fees'),
+        backgroundColor: Colors.indigo,
+        onPressed: () {},
+        shape: new BeveledRectangleBorder(borderRadius: new BorderRadius.circular(0.0)),
+      ),
     );
   }
+
+
+
 
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
