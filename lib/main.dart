@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mailmagario/see_shipping_rates.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,8 +8,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => MyHomePage(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/see_shipping_rates': (context) => SeeShippingRates(),
+      },
       title: 'Stork',
-      home: MyHomePage(),
     );
   }
 }
@@ -36,9 +43,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: new FloatingActionButton.extended(
         icon: Icon(Icons.attach_money ),
-        label: Text('See shipping fees'),
-        backgroundColor: Colors.indigo,
-        onPressed: () {},
+        label: Text('See shipping rates'),
+        backgroundColor: Colors.indigoAccent,
+        onPressed: () {
+          Navigator.pushNamed(context, '/see_shipping_rates');
+        },
         shape: new BeveledRectangleBorder(borderRadius: new BorderRadius.circular(0.0)),
       ),
     );
