@@ -14,6 +14,7 @@ class SeeShippingRates extends StatelessWidget {
   }
 }
   class MyShippingRates extends StatefulWidget {
+    MyShippingRates({Key key}) : super(key: key);
   @override
   _MyShippingRates createState() {
   return _MyShippingRates();
@@ -21,6 +22,7 @@ class SeeShippingRates extends StatelessWidget {
   }
 
    class _MyShippingRates extends State<MyShippingRates> {
+     String dropdownValue = 'One';
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(title: Text('See Shipping Rates')),
@@ -28,9 +30,9 @@ Widget build(BuildContext context) {
 
   );
 }
-}
 
-Widget _buildBody(BuildContext context) {
+
+Widget _buildBody(BuildContext context)  {
   return StreamBuilder<QuerySnapshot>(
     stream: Firestore.instance.collection('country').snapshots(),
     builder: (context, snapshot) {
@@ -42,46 +44,30 @@ Widget _buildBody(BuildContext context) {
 }
 
 Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
-  return ListView(
-    padding: const EdgeInsets.only(top: 20.0),
-    children: snapshot.map((data) => _buildListItem(context, data)).toList(),
-  );
-}
 
-Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
-  final record = Record.fromSnapshot(data);
 
-  return Padding(
-    key: ValueKey(record.name),
-    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-    child: Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(5.0),
-      ),
-      child: ListTile(
-        title: Text(record.name),
-        trailing: Text(record.zone.toString()),
-        onTap: () => record.reference.updateData({'zone': FieldValue.increment(1)}),       ),
+  return new DropdownButton<String>(
+    value: dropdownValue,
+    icon: Icon(Icons.arrow_downward),
+    iconSize: 24,
+    elevation: 16,
+    style: TextStyle(color: Colors.deepPurple),
+    underline: Container(
+      height: 2,
+      color: Colors.deepPurpleAccent,
     ),
+    onChanged: (String newValue) {
+      setState(() {
+        dropdownValue = newValue;
+      });
+    },
+    items: <String>['One', 'Two', 'Free', 'Four']
+        .map<DropdownMenuItem<String>>((String value) {
+      return DropdownMenuItem<String>(
+        value: value,
+        child: Text(value),
+      );
+    }).toList(),
   );
 }
-
-
-class Record {
-  final String name;
-  final int zone;
-  final DocumentReference reference;
-
-  Record.fromMap(Map<String, dynamic> map, {this.reference})
-      : assert(map['name'] != null),
-        assert(map['zone'] != null),
-        name = map['name'],
-        zone = map['zone'];
-
-  Record.fromSnapshot(DocumentSnapshot snapshot)
-      : this.fromMap(snapshot.data, reference: snapshot.reference);
-
-  @override
-  String toString() => "Record<$name:$zone>";
-}
+   }
