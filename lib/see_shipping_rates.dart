@@ -41,8 +41,22 @@ class SeeShippingRates extends StatelessWidget {
            builder: (context, snapshot) {
              var length = snapshot.data.documents.length;
              DocumentSnapshot ds = snapshot.data.documents[length - 1];
-             return new DropdownButton(
+             return new Padding(
+
+                 padding: EdgeInsets.all(20),
+                 child: Container(
+                   width: 300,
+                   height: 50,
+                   margin: EdgeInsets.all(24),
+                   padding: EdgeInsets.only(top: 24),
+                   alignment: Alignment.center,
+                 decoration: BoxDecoration(
+                 border: Border.all(color: Colors.grey),
+             borderRadius: BorderRadius.circular(5.0),
+             ),
+             child: DropdownButton(
                value: dropdownValue,
+
                onChanged: (String newValue) {
                  setState(() {
                    dropdownValue = newValue;
@@ -55,8 +69,11 @@ class SeeShippingRates extends StatelessWidget {
                }).toList(),
 
 
+             ),
+             ),
              );
            }
        );
+
      }
    }
