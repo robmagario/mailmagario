@@ -43,7 +43,7 @@ class SeeShippingRates extends StatelessWidget {
              return new DropdownButton(
                items: snapshot.data.documents.map((DocumentSnapshot document) {
                  return DropdownMenuItem(
-                     child: new Text(document.documentID));
+                     child: new Text(document.data['name']));
                }).toList(),
                onChanged: (newValue) {
                  setState(() {
