@@ -34,62 +34,25 @@ class SeeShippingRates extends StatelessWidget {
 
 
      Widget _buildBody(BuildContext context) {
+       var category;
        return StreamBuilder<QuerySnapshot>(
-         stream: Firestore.instance.collection('country').snapshots(),
-         builder: (context, snapshot) {
-           if (!snapshot.hasData) return LinearProgressIndicator();
+           stream: Firestore.instance.collection("country").snapshots(),
+           builder: (context, snapshot) {
+             var length = snapshot.data.documents.length;
+             DocumentSnapshot ds = snapshot.data.documents[length - 1];
+             return new DropdownButton(
+               items: snapshot.data.documents.map((DocumentSnapshot document) {
+                 return DropdownMenuItem(
+                     child: new Text(document.documentID));
+               }).toList(),
+               onChanged: (newValue) {
+                 setState(() {
+                   category = newValue;
+                 });
+               },
 
-           return _buildDropDown(context, snapshot.data.documents);
-         },
+             );
+           }
        );
      }
-
-     Widget _buildDropDown(BuildContext context,
-         List<DocumentSnapshot> snapshot) {
-       return DropdownButton(
-         value: dropdownValue,
-         icon: Icon(Icons.arrow_downward),
-         iconSize: 24,
-         elevation: 16,
-         style: TextStyle(color: Colors.deepPurple),
-         underline: Container(
-           height: 2,
-           color: Colors.deepPurpleAccent,
-         ),
-         onChanged: (String newValue) {
-           setState(() {
-             dropdownValue = newValue;
-           });
-         },
-         items: snapshot.map((data) => _buildDropDownItem(context, data))
-             .toList(),
-       );
-     }
-
-     Widget _buildDropDownItem(BuildContext context, DocumentSnapshot data) {
-       final record = Record.fromSnapshot(data);
-
-       return DropdownMenuItem<String>(
-         value: record.name,
-         child: Text(record.name),
-       );
-     }
-
    }
-class Record {
-  final String name;
-  final int zone;
-  final DocumentReference reference;
-
-  Record.fromMap(Map<String, dynamic> map, {this.reference})
-      : assert(map['name'] != null),
-        assert(map['zone'] != null),
-        name = map['name'],
-        zone = map['zone'];
-
-  Record.fromSnapshot(DocumentSnapshot snapshot)
-      : this.fromMap(snapshot.data, reference: snapshot.reference);
-
-  @override
-  String toString() => "Record<$name:$zone>";
-}
