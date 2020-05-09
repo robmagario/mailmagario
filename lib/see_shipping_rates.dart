@@ -22,7 +22,7 @@ class SeeShippingRates extends StatelessWidget {
   }
 
    class _MyShippingRates extends State<MyShippingRates> {
-     String dropdownValue = 'One';
+     String dropdownValue = 'argentina';
 
      Widget build(BuildContext context) {
        return Scaffold(
@@ -34,22 +34,26 @@ class SeeShippingRates extends StatelessWidget {
 
 
      Widget _buildBody(BuildContext context) {
-       var category;
+
+
        return StreamBuilder<QuerySnapshot>(
            stream: Firestore.instance.collection("country").snapshots(),
            builder: (context, snapshot) {
              var length = snapshot.data.documents.length;
              DocumentSnapshot ds = snapshot.data.documents[length - 1];
              return new DropdownButton(
-               items: snapshot.data.documents.map((DocumentSnapshot document) {
-                 return DropdownMenuItem(
-                     child: new Text(document.data['name']));
-               }).toList(),
-               onChanged: (newValue) {
+               value: dropdownValue,
+               onChanged: (String newValue) {
                  setState(() {
-                   category = newValue;
+                   dropdownValue = newValue;
                  });
                },
+               items: snapshot.data.documents.map((DocumentSnapshot document) {
+                 return DropdownMenuItem(
+                     value: document.documentID.toString(),
+                     child: new Text(document.data['name']));
+               }).toList(),
+
 
              );
            }
