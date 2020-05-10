@@ -66,24 +66,41 @@ class SeeShippingRates extends StatelessWidget {
                child: Column(
                  crossAxisAlignment: CrossAxisAlignment.start,
                  children: <Widget>[
-                   TextFormField(
+                      TextFormField(
+                     keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.linear_scale),
+                          hintText: 'Please insert the weight in grams',
+                          labelText: 'Weight',
+                        ),
                      validator: (value) {
+
                        if (value.isEmpty) {
                          return 'Please enter the weight.';
                        }
+
                        return null;
                      },
                    ),
+                   Text("grams"),
                    Padding(
                      padding: const EdgeInsets.symmetric(vertical: 16.0),
                      child: RaisedButton(
                        onPressed: () {
+                         FocusScope.of(context).requestFocus(new FocusNode());
                          // Validate returns true if the form is valid, or false
                          // otherwise.
                          if (_formKey.currentState.validate()) {
                            // If the form is valid, display a Snackbar.
-                           Scaffold.of(context)
-                               .showSnackBar(SnackBar(content: Text('Processing Data')));
+
+
+
+                           Scaffold.of(context).showSnackBar(SnackBar(content:
+                         Row(
+                         children: [Image.asset('assets/images/eExpress.png'),
+                         //Text('Processing Data')
+                         ]),
+                         ),);
                          }
                        },
                        child: Text('Submit'),
