@@ -41,20 +41,12 @@ class SeeShippingRates extends StatelessWidget {
            builder: (context, snapshot) {
              var length = snapshot.data.documents.length;
              DocumentSnapshot ds = snapshot.data.documents[length - 1];
-             return new Padding(
-
+             return new Container(
                  padding: EdgeInsets.all(20),
-                 child: Container(
-                   width: 300,
-                   height: 50,
-                   margin: EdgeInsets.all(24),
-                   padding: EdgeInsets.only(top: 24),
-                   alignment: Alignment.center,
-                 decoration: BoxDecoration(
-                 border: Border.all(color: Colors.grey),
-             borderRadius: BorderRadius.circular(5.0),
-             ),
-             child: DropdownButton(
+                 alignment: Alignment.center,
+                 child: Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [Text("Please select your destination country"), DropdownButton(
                value: dropdownValue,
 
                onChanged: (String newValue) {
@@ -69,7 +61,8 @@ class SeeShippingRates extends StatelessWidget {
                }).toList(),
 
 
-             ),
+             )],
+
              ),
              );
            }
