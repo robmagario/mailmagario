@@ -23,7 +23,7 @@ class SeeShippingRates extends StatelessWidget {
 
    class _MyShippingRates extends State<MyShippingRates> {
      String dropdownValue = 'argentina';
-
+     final _formKey = GlobalKey<FormState>();
      Widget build(BuildContext context) {
        return Scaffold(
          appBar: AppBar(title: Text('See Shipping Rates')),
@@ -61,7 +61,37 @@ class SeeShippingRates extends StatelessWidget {
                }).toList(),
 
 
-             )],
+             ), Form(
+               key: _formKey,
+               child: Column(
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: <Widget>[
+                   TextFormField(
+                     validator: (value) {
+                       if (value.isEmpty) {
+                         return 'Please enter the weight.';
+                       }
+                       return null;
+                     },
+                   ),
+                   Padding(
+                     padding: const EdgeInsets.symmetric(vertical: 16.0),
+                     child: RaisedButton(
+                       onPressed: () {
+                         // Validate returns true if the form is valid, or false
+                         // otherwise.
+                         if (_formKey.currentState.validate()) {
+                           // If the form is valid, display a Snackbar.
+                           Scaffold.of(context)
+                               .showSnackBar(SnackBar(content: Text('Processing Data')));
+                         }
+                       },
+                       child: Text('Submit'),
+                     ),
+                   ),
+                 ],
+               ),
+             ),],
 
              ),
              );
