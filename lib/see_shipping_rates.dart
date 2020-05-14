@@ -91,16 +91,99 @@ class SeeShippingRates extends StatelessWidget {
                          // Validate returns true if the form is valid, or false
                          // otherwise.
                          if (_formKey.currentState.validate()) {
-                           // If the form is valid, display a Snackbar.
 
+                           Scaffold.of(context).showBottomSheet((BuildContext context) {
+                             return new Table(
 
+                               defaultVerticalAlignment: TableCellVerticalAlignment.top,
+                               children: <TableRow>[
+                                 ///First table row with 3 children
+                                 TableRow(children: <Widget>[
+                                   FittedBox(
+                                     fit: BoxFit.none,
+                                     child: Container(
+                                       margin: EdgeInsets.all(1),
+                                       color: Colors.red,
+                                       width: 30.0,
+                                       height: 20.0,
+                                       child: Center(
+                                         child: Text(
+                                           "eExpress",
+                                           textAlign: TextAlign.center,
+                                           style: TextStyle(
+                                               color: Colors.white,
+                                               fontSize: 6.0,
+                                               fontFamily: 'Open Sans'),
+                                         ),
+                                       ),
+                                     ),
+                                   ),
 
-                           Scaffold.of(context).showSnackBar(SnackBar(content:
-                         Row(
-                         children: [Image.asset('assets/images/eExpress.png'),
-                         //Text('Processing Data')
-                         ]),
-                         ),);
+                                   FittedBox(
+                                     fit: BoxFit.contain,
+                                     child: Container(
+                                       margin: EdgeInsets.all(1),
+                                       color: Colors.blue,
+                                       width: 70.0,
+                                       height: 20.0,
+                                       child: Center(
+                                         child: Text(
+                                           "HK\$25.00. Gets to Argentina within 2 weeks.",
+                                           textAlign: TextAlign.center,
+                                           style: TextStyle(
+                                               color: Colors.white,
+                                               fontSize: 6.0,
+                                               fontFamily: 'Open Sans'),
+                                         ),
+                                       ),
+                                     ),
+                                   ),
+                                 ]),
+                                 ///Second table row with 3 children
+                                 TableRow(children: <Widget>[
+                                   FittedBox(
+                                     fit: BoxFit.none,
+                                     child: Container(
+                                       margin: EdgeInsets.all(1),
+                                       color: Colors.lightBlue,
+                                       width: 30.0,
+                                       height: 20.0,
+                                       child: Center(
+                                         child: Text(
+                                           "Normal Airmail",
+                                           textAlign: TextAlign.center,
+                                           style: TextStyle(
+                                               color: Colors.white,
+                                               fontSize: 6.0,
+                                               fontFamily: 'Open Sans'),
+                                         ),
+                                       ),
+                                     ),
+                                   ),
+
+                                   FittedBox(
+                                     fit: BoxFit.contain,
+                                     child: Container(
+                                       margin: EdgeInsets.all(2),
+                                       color: Colors.blue,
+                                       width: 70.0,
+                                       height: 20.0,
+                                       child: Center(
+                                         child: Text(
+                                           "HK\$68.00. Gets to Argentina within 2-3 weeks.",
+                                           textAlign: TextAlign.center,
+                                           style: TextStyle(
+                                               color: Colors.white,
+                                               fontSize: 6.0,
+                                               fontFamily: 'Open Sans'),
+                                         ),
+                                       ),
+                                     ),
+                                   ),
+                                 ]),
+                               ],
+                             );
+                           });
                          }
                        },
                        child: Text('Submit'),
