@@ -93,95 +93,25 @@ class SeeShippingRates extends StatelessWidget {
                          if (_formKey.currentState.validate()) {
 
                            Scaffold.of(context).showBottomSheet((BuildContext context) {
-                             return new Table(
-
-                               defaultVerticalAlignment: TableCellVerticalAlignment.top,
-                               children: <TableRow>[
-                                 ///First table row with 3 children
-                                 TableRow(children: <Widget>[
-                                   FittedBox(
-                                     fit: BoxFit.none,
-                                     child: Container(
-                                       margin: EdgeInsets.all(1),
-                                       color: Colors.red,
-                                       width: 30.0,
-                                       height: 20.0,
-                                       child: Center(
-                                         child: Text(
-                                           "eExpress",
-                                           textAlign: TextAlign.center,
-                                           style: TextStyle(
-                                               color: Colors.white,
-                                               fontSize: 6.0,
-                                               fontFamily: 'Open Sans'),
-                                         ),
-                                       ),
-                                     ),
-                                   ),
-
-                                   FittedBox(
-                                     fit: BoxFit.contain,
-                                     child: Container(
-                                       margin: EdgeInsets.all(1),
-                                       color: Colors.blue,
-                                       width: 70.0,
-                                       height: 20.0,
-                                       child: Center(
-                                         child: Text(
-                                           "HK\$25.00. Gets to Argentina within 2 weeks.",
-                                           textAlign: TextAlign.center,
-                                           style: TextStyle(
-                                               color: Colors.white,
-                                               fontSize: 6.0,
-                                               fontFamily: 'Open Sans'),
-                                         ),
-                                       ),
-                                     ),
-                                   ),
-                                 ]),
-                                 ///Second table row with 3 children
-                                 TableRow(children: <Widget>[
-                                   FittedBox(
-                                     fit: BoxFit.none,
-                                     child: Container(
-                                       margin: EdgeInsets.all(1),
-                                       color: Colors.lightBlue,
-                                       width: 30.0,
-                                       height: 20.0,
-                                       child: Center(
-                                         child: Text(
-                                           "Normal Airmail",
-                                           textAlign: TextAlign.center,
-                                           style: TextStyle(
-                                               color: Colors.white,
-                                               fontSize: 6.0,
-                                               fontFamily: 'Open Sans'),
-                                         ),
-                                       ),
-                                     ),
-                                   ),
-
-                                   FittedBox(
-                                     fit: BoxFit.contain,
-                                     child: Container(
-                                       margin: EdgeInsets.all(2),
-                                       color: Colors.blue,
-                                       width: 70.0,
-                                       height: 20.0,
-                                       child: Center(
-                                         child: Text(
-                                           "HK\$68.00. Gets to Argentina within 2-3 weeks.",
-                                           textAlign: TextAlign.center,
-                                           style: TextStyle(
-                                               color: Colors.white,
-                                               fontSize: 6.0,
-                                               fontFamily: 'Open Sans'),
-                                         ),
-                                       ),
-                                     ),
-                                   ),
-                                 ]),
-                               ],
+                             return new Container(
+                               child: Row(
+                                 mainAxisAlignment: MainAxisAlignment.start,
+                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                 children: [Container(
+                                   width: 40.0,
+                                    child:(Column(
+                                   children: [Text("eExpress"),]
+                                 )),), Container(
+                                   width: 40.0,
+                             child: Column(
+                             children: [Text("20 HKD"),]
+                             ),),
+                             Container(
+                               width:100.0,
+                               child: Column(
+                                              children: [Text('Estimation: 10-15 days. Signature required upon delivery.',softWrap: true),]
+                             ),)],
+                               ),
                              );
                            });
                          }
