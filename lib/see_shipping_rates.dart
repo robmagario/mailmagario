@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class SeeShippingRates extends StatelessWidget {
   @override
@@ -95,24 +96,26 @@ class SeeShippingRates extends StatelessWidget {
                            Scaffold.of(context).showBottomSheet((BuildContext context) {
                              return new Container(
                                child: Row(
-                                 mainAxisAlignment: MainAxisAlignment.start,
-                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+
                                  children: [Container(
-                                   width: 40.0,
+                                   width: 60.0,
                                     child:(Column(
                                    children: [Text("eExpress"),]
                                  )),), Container(
-                                   width: 40.0,
+                                   width: 60.0,
                              child: Column(
                              children: [Text("20 HKD"),]
                              ),),
-                             Container(
-                               width:100.0,
+                             Flexible(
+                             child: Container(
+                               width: 100.0,
                                child: Column(
-                                              children: [Text('Estimation: 10-15 days. Signature required upon delivery.',softWrap: true),]
-                             ),)],
-                               ),
-                             );
+                                 mainAxisSize: MainAxisSize.max,
+                                   children: [new Text('''Estimation: 10-15 days. Signature required upon delivery.'''),]
+                             ),),),
+
+                             ],));
                            });
                          }
                        },
