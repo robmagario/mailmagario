@@ -95,6 +95,7 @@ class SeeShippingRates extends StatelessWidget {
 
                            Scaffold.of(context).showBottomSheet((BuildContext context) {
                              return new Container(
+                               height: 350.0,
                                child: Row(
                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
 
@@ -103,7 +104,7 @@ class SeeShippingRates extends StatelessWidget {
                                     child:(Column(
                                    children: [Text("eExpress"),]
                                  )),), Container(
-                                   width: 60.0,
+                                   width: 50.0,
                              child: Column(
                              children: [Text("20 HKD"),]
                              ),),
