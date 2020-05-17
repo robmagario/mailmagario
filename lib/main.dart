@@ -45,13 +45,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: new FloatingActionButton.extended(
-        icon: Icon(Icons.attach_money ),
+        icon: Icon(Icons.attach_money),
         label: Text('See shipping rates'),
         backgroundColor: Colors.indigoAccent,
         onPressed: () {
           Navigator.pushNamed(context, '/see_shipping_rates');
         },
-        shape: new BeveledRectangleBorder(borderRadius: new BorderRadius.circular(0.0)),
+        shape: new BeveledRectangleBorder(
+            borderRadius: new BorderRadius.circular(0.0)),
       ),
     );
   }
@@ -61,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
       auth: new Auth(),
     );
   }
-
+}
 /*
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
