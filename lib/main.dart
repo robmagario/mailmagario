@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mailmagario/see_shipping_rates.dart';
+import 'package:mailmagario/LoginSignupPage.dart';
+import 'package:mailmagario/authentication.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -53,9 +56,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _buildBody(BuildContext context) {
+    RootPage(
+      auth: new Auth(),
+    );
+  }
 
-
-
+/*
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection('baby').snapshots(),
@@ -94,6 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+
+
 class Record {
   final String name;
   final int votes;
@@ -111,3 +120,5 @@ class Record {
   @override
   String toString() => "Record<$name:$votes>";
 }
+
+ */
