@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mailmagario/see_shipping_rates.dart';
 import 'package:mailmagario/LoginSignupPage.dart';
 import 'package:mailmagario/authentication.dart';
+import 'package:mailmagario/root_page.dart';
 
 
 void main() => runApp(MyApp());
@@ -58,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody(BuildContext context) {
-    RootPage(
+    return RootPage(
       auth: new Auth(),
     );
   }
