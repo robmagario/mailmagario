@@ -35,26 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Stork')),
+      //appBar: AppBar(title: Text('Stork')),
       body: _buildBody(context),
-      bottomNavigationBar: new BottomAppBar(
-        child: new Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            IconButton(onPressed: () {}, icon: Icon(Icons.menu),),
-          ],
-        ),
-      ),
-      floatingActionButton: new FloatingActionButton.extended(
-        icon: Icon(Icons.attach_money),
-        label: Text('See shipping rates'),
-        backgroundColor: Colors.indigoAccent,
-        onPressed: () {
-          Navigator.pushNamed(context, '/see_shipping_rates');
-        },
-        shape: new BeveledRectangleBorder(
-            borderRadius: new BorderRadius.circular(0.0)),
-      ),
+
     );
   }
 

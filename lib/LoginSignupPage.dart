@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'authentication.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginSignupPage extends StatefulWidget {
   LoginSignupPage({this.auth, this.onSignedIn});
@@ -30,17 +31,38 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Flutter login demo"),
+        title: new Text("Stork"),
       ),
       body: Column(
         children: <Widget>[
+          logoWidget(),
           formWidget(),
           loginButtonWidget(),
           secondaryButton(),
+          seeShippingRates(),
           errorWidget(),
           progressWidget()
         ],
       ),
+      bottomNavigationBar: new BottomAppBar(
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(onPressed: () {}, icon: Icon(Icons.menu),),
+          ],
+        ),
+      ),
+      /*floatingActionButton: new FloatingActionButton.extended(
+        icon: Icon(Icons.attach_money),
+        label: Text('See shipping rates'),
+        backgroundColor: Colors.indigoAccent,
+        onPressed: () {
+          Navigator.pushNamed(context, '/see_shipping_rates');
+        },
+        shape: new BeveledRectangleBorder(
+            borderRadius: new BorderRadius.circular(0.0)),
+      ),
+      */
     );
   }
 
@@ -51,6 +73,27 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     return Container(
       height: 0.0,
       width: 0.0,
+    );
+  }
+
+  Widget logoWidget() {
+    return Stack(
+        children: <Widget>[
+          Image.asset('assets/images/stork_cover.png'),
+          Container(
+              padding:
+              EdgeInsets.only(left: 10.0, right: 50.0, top: 30, bottom: 30),
+              child: Center(child: Text("Deliver internationally from HK / China to your doorstep.",
+              textAlign: TextAlign.center,
+
+            style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold, shadows: [
+              Shadow(
+                blurRadius: 10.0,
+                color: Colors.black,
+                offset: Offset(5.0, 5.0),
+              ),
+            ],))),),
+        ]
     );
   }
 
@@ -68,7 +111,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget _emailWidget() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
       child: TextFormField(
         maxLines: 1,
         keyboardType: TextInputType.emailAddress,
@@ -118,6 +161,22 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
               : new Text('Create account',
               style: new TextStyle(fontSize: 20.0, color: Colors.white)),
           onPressed: _validateAndSubmit,
+        ));
+  }
+
+  Widget seeShippingRates() {
+    return new Padding(
+        padding: EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
+        child: new MaterialButton(
+          elevation: 5.0,
+          minWidth: 250.0,
+          height: 42.0,
+          color: Colors.indigoAccent,
+          child: new Text('\$ See Our Shipping Rates',
+              style: new TextStyle(fontSize: 20.0, color: Colors.white)),
+          onPressed: () {
+            Navigator.pushNamed(context, '/see_shipping_rates');
+          },
         ));
   }
 
