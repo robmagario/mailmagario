@@ -38,7 +38,57 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Center(
-        child: Text("hello"),
+        child: Container(
+            padding:
+            EdgeInsets.only(left: 10.0, right: 50.0, top: 30, bottom: 30),
+          
+          child: Column (
+            children: <Widget>[Row(
+              children: [Text('My Hong Kong address:')]
+            ),Row(
+                children: [Text('27A, The Met Focus')]
+            ),Row(
+                children: [Text('8 Pak Kung Street')]
+            ),Row(
+                children: [Text('Hong Kong')]
+            ),],
+          )
+        )
+      ),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Stork Menu'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Admin Create Product'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Create Order'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
