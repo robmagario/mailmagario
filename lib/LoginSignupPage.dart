@@ -29,7 +29,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return new Scaffold(resizeToAvoidBottomPadding: false,
       appBar: new AppBar(
         title: new Text("Stork"),
       ),
