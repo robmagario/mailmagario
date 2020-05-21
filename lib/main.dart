@@ -4,6 +4,7 @@ import 'package:mailmagario/see_shipping_rates.dart';
 import 'package:mailmagario/LoginSignupPage.dart';
 import 'package:mailmagario/authentication.dart';
 import 'package:mailmagario/root_page.dart';
+import 'package:mailmagario/create_order.dart';
 
 
 void main() => runApp(MyApp());
@@ -18,6 +19,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => MyHomePage(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/see_shipping_rates': (context) => SeeShippingRates(),
+        '/create_product': (context) => CreateProduct(),
+
       },
       title: 'Stork',
     );
