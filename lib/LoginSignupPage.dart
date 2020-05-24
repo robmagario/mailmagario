@@ -138,11 +138,58 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       key: _formKey,
       child: Column(
         children: <Widget>[
+          _firstNameWidget(),
+          _familyNameWidget(),
           _emailWidget(),
           _passwordWidget(),
         ],
       ),
     );
+  }
+
+  Widget _firstNameWidget() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+      child: TextFormField(
+        maxLines: 1,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: new InputDecoration(
+            hintText: 'Enter First Name',
+            icon: new Icon(
+              Icons.person,
+              color: Colors.grey,
+            )),
+        validator: (value) => value.isEmpty ? 'First Name cannot be empty' : null,
+        onSaved: (value) => _email = value.trim(),
+      ),
+    );
+  }
+  Widget _familyNameWidget() {
+    if (_formMode == FormMode.LOGIN) {
+      return 0;
+    }
+    else {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+        child: TextFormField(
+          maxLines: 1,
+          keyboardType: TextInputType.text,
+          autofocus: false,
+          decoration: new InputDecoration(
+              hintText: 'Enter Family Name',
+              icon: new Icon(
+                Icons.person,
+                color: Colors.grey,
+              )),
+          validator: (value) =>
+          value.isEmpty
+              ? 'Family Name cannot be empty'
+              : null,
+          onSaved: (value) => _email = value.trim(),
+        ),
+      );
+    }
   }
 
   Widget _emailWidget() {
