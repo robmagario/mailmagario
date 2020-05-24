@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 import 'authentication.dart';
 
 class HomePage extends StatefulWidget {
@@ -75,7 +76,8 @@ class _HomePageState extends State<HomePage> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
+                //Navigator.pop(context);
+                Navigator.pushNamed(context, '/create_product');
               },
             ),
             ListTile(

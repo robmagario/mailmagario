@@ -5,7 +5,7 @@ import 'package:mailmagario/LoginSignupPage.dart';
 import 'package:mailmagario/authentication.dart';
 import 'package:mailmagario/root_page.dart';
 import 'package:mailmagario/create_order.dart';
-
+import 'package:mailmagario/create_product.dart';
 
 void main() => runApp(MyApp());
 
