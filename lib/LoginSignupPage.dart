@@ -13,6 +13,29 @@ class LoginSignupPage extends StatefulWidget {
   State<StatefulWidget> createState() => new _LoginSignupPageState();
 }
 
+class User {
+  final String id;
+  final String firstName;
+  final String familyName;
+  final String email;
+  User({this.id, this.firstName, this.familyName, this.email});
+  User.fromData(Map<String, dynamic> data)
+      : id = data['id'],
+        firstName = data['firstName'],
+        familyName = data['familyName'],
+        email = data['email'];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'firstName': firstName,
+      'familyName': familyName,
+      'email': email,
+
+    };
+  }
+}
+
 enum FormMode { LOGIN, SIGNUP }
 
 class _LoginSignupPageState extends State<LoginSignupPage> {
@@ -20,6 +43,9 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   String _email;
   String _password;
+  String _firstName;
+  String _familyName;
+
   String _errorMessage = "";
 
   // this will be used to identify the form to show
@@ -168,7 +194,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           value.isEmpty
               ? 'First Name cannot be empty'
               : null,
-          onSaved: (value) => _email = value.trim(),
+          onSaved: (value) => _firstName = value.trim(),
         ),
       );
     }
@@ -194,7 +220,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           value.isEmpty
               ? 'Family Name cannot be empty'
               : null,
-          onSaved: (value) => _email = value.trim(),
+          onSaved: (value) => _familyName = value.trim(),
         ),
       );
     }
@@ -336,7 +362,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         if (_formMode == FormMode.LOGIN) {
           userId = await widget.auth.signIn(_email, _password);
         } else {
-          userId = await widget.auth.signUp(_email, _password);
+          userId = await widget.auth.signUp(_email, _firstName, _familyName, _password);
         }
         setState(() {
           _isLoading = false;
