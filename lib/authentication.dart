@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mailmagario/firestore_service.dart';
+import 'package:mailmagario/LoginSignupPage.dart';
 
 abstract class BaseAuth {
   Future<String> signIn(String email, String password);
@@ -12,7 +13,7 @@ abstract class BaseAuth {
 
 class Auth implements BaseAuth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final FirestoreService _firestoreService =  locator<FirestoreService>();
+  final FirestoreService _firestoreService =  FirestoreService();
 
   Future<String> signIn(String email, String password) async {
     FirebaseUser user = (await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password)).user;
