@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
+
+final people = <Person>[Person('Alice', '123 Main'), Person('Bob', '456 Main')];
 
 class CreateProduct extends StatelessWidget {
   @override

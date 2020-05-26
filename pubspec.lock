@@ -261,6 +261,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  simple_autocomplete_formfield:
+    dependency: "direct dev"
+    description:
+      name: simple_autocomplete_formfield
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.7"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -308,6 +315,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.11"
+  textfield_state:
+    dependency: transitive
+    description:
+      name: textfield_state
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0+2"
   typed_data:
     dependency: transitive
     description:
