@@ -6,7 +6,7 @@ import 'package:mailmagario/LoginSignupPage.dart';
 
 abstract class BaseAuth {
   Future<String> signIn(String email, String password);
-  Future<String> signUp(String email, String firstName, String familyName, String password);
+  Future<String> signUp(String email, String firstName, String familyName, String password, String role);
   Future<FirebaseUser> getCurrentUser();
   Future<void> signOut();
 }
@@ -21,13 +21,14 @@ class Auth implements BaseAuth {
     return user.uid;
   }
 
-  Future<String> signUp(String email, String firstName, String familyName, String password) async {
+  Future<String> signUp(String email, String firstName, String familyName, String password, String role) async {
     FirebaseUser user = (await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password)).user;
     await _firestoreService.createUser(User(
         id: user.uid,
         email: email,
         firstName: firstName,
-        familyName: familyName));
+        familyName: familyName,
+        role: role));
     return user.uid;
   }
 

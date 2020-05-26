@@ -18,12 +18,15 @@ class User {
   final String firstName;
   final String familyName;
   final String email;
-  User({this.id, this.firstName, this.familyName, this.email});
+  final String role;
+
+  User({this.id, this.firstName, this.familyName, this.email, this.role});
   User.fromData(Map<String, dynamic> data)
       : id = data['id'],
         firstName = data['firstName'],
         familyName = data['familyName'],
-        email = data['email'];
+        email = data['email'],
+        role = data['role'];
 
   Map<String, dynamic> toJson() {
     return {
@@ -31,6 +34,7 @@ class User {
       'firstName': firstName,
       'familyName': familyName,
       'email': email,
+      'role': role,
 
     };
   }
@@ -45,7 +49,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   String _password;
   String _firstName;
   String _familyName;
-
+  String _role = "user";
   String _errorMessage = "";
 
   // this will be used to identify the form to show
@@ -371,7 +375,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         if (_formMode == FormMode.LOGIN) {
           userId = await widget.auth.signIn(_email, _password);
         } else {
-          userId = await widget.auth.signUp(_email, _firstName, _familyName, _password);
+          userId = await widget.auth.signUp(_email, _firstName, _familyName, _password, _role);
         }
         setState(() {
           _isLoading = false;
