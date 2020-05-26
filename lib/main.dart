@@ -13,6 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: new ThemeData(
+        primarySwatch: Colors.deepOrange,
+        primaryColor: const Color(0xFFff5722),
+        accentColor: const Color(0xFFff5722),
+        canvasColor: const Color(0xFFfafafa),
+        fontFamily: 'Roboto',
+      ),
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.

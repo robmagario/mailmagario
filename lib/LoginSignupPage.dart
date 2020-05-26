@@ -139,24 +139,33 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   }
 
   Widget logoWidget() {
-    return Stack(
-        children: <Widget>[
-          Image.asset('assets/images/stork_cover.png'),
-          Container(
+    if (_formMode != FormMode.LOGIN) {
+      return Container();
+    }
+    else {
+      return Stack(
+          children: <Widget>[
+            Image.asset('assets/images/stork_cover.png'),
+            Container(
               padding:
               EdgeInsets.only(left: 10.0, right: 50.0, top: 30, bottom: 30),
-              child: Center(child: Text("Deliver internationally from HK / China to your doorstep.",
-              textAlign: TextAlign.center,
+              child: Center(child: Text(
+                  "Deliver internationally from HK / China to your doorstep.",
+                  textAlign: TextAlign.center,
 
-            style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold, shadows: [
-              Shadow(
-                blurRadius: 10.0,
-                color: Colors.black,
-                offset: Offset(5.0, 5.0),
-              ),
-            ],))),),
-        ]
-    );
+                  style: TextStyle(color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 10.0,
+                        color: Colors.black,
+                        offset: Offset(5.0, 5.0),
+                      ),
+                    ],))),),
+          ]
+      );
+    }
   }
 
   Widget formWidget() {
