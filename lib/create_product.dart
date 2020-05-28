@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
+import 'package:mailmagario/myDrawer.dart';
 
-final people = <Person>[Person('Alice', '123 Main'), Person('Bob', '456 Main')];
+//final people = <Person>[Person('Alice', '123 Main'), Person('Bob', '456 Main')];
 
 class CreateProduct extends StatelessWidget {
   @override
@@ -32,19 +33,19 @@ class _MyCreateProduct extends State<MyCreateProduct> {
     return Scaffold(
       appBar: AppBar(title: Text('Admin Create Product')),
       body: _buildBody(context),
+      drawer: MyDrawer(),
 
     );
   }
 
 
   Widget _buildBody(BuildContext context) {
+    TextEditingController productNameController = TextEditingController();
+    TextEditingController weightController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    final snackBar = SnackBar(content: Text('Product created successfully!'));
 
-    return StreamBuilder<QuerySnapshot>(
-        stream: Firestore.instance.collection("country").snapshots(),
-        builder: (context, snapshot) {
-          var length = snapshot.data.documents.length;
-          DocumentSnapshot ds = snapshot.data.documents[length - 1];
-          return new Container(
+    return new Container(
             padding: EdgeInsets.all(20),
             alignment: Alignment.center,
             child: Column(
@@ -56,7 +57,8 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                   children: <Widget>[
 
                     TextFormField(
-                      keyboardType: TextInputType.number,
+                      controller: productNameController,
+                      keyboardType: TextInputType.text,
                       decoration: const InputDecoration(
                         icon: Icon(Icons.card_giftcard),
                         hintText: 'Please insert the product name',
@@ -70,6 +72,7 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                       },
                     ),
                     TextFormField(
+                      controller: weightController,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         icon: Icon(Icons.linear_scale),
@@ -84,15 +87,16 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                       },
                     ),
                     TextFormField(
+                      controller: emailController,
                       keyboardType: TextInputType.text,
                       decoration: const InputDecoration(
                         icon: Icon(Icons.person),
-                        hintText: 'Autocomplete username',
-                        labelText: 'Username',
+                        hintText: 'Autocomplete email',
+                        labelText: 'Email of the user',
                       ),
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please enter the user!';
+                          return 'Please enter the email of the user!';
                         }
                         return null;
                       },
@@ -101,36 +105,12 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: RaisedButton(
                         onPressed: () {
-                          FocusScope.of(context).requestFocus(new FocusNode());
+                         // FocusScope.of(context).requestFocus(new FocusNode());
                           // Validate returns true if the form is valid, or false
                           // otherwise.
                           if (_formKey.currentState.validate()) {
-
-                            Scaffold.of(context).showBottomSheet((BuildContext context) {
-                              return new Container(
-                                  height: 350.0,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                                    children: [Container(
-                                      width: 60.0,
-                                      child:(Column(
-                                          children: [Text("eExpress"),]
-                                      )),), Container(
-                                      width: 50.0,
-                                      child: Column(
-                                          children: [Text("20 HKD"),]
-                                      ),),
-                                      Flexible(
-                                        child: Container(
-                                          width: 100.0,
-                                          child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [new Text('''Estimation: 10-15 days. Signature required upon delivery.'''),]
-                                          ),),),
-
-                                    ],));
-                            });
+                            createRecord(productNameController.text, weightController.text, emailController.text);
+                            Scaffold.of(context).showSnackBar(snackBar);
                           }
                         },
                         child: Text('Submit'),
@@ -143,10 +123,20 @@ class _MyCreateProduct extends State<MyCreateProduct> {
             ),
           );
         }
-    );
+
 
 
   }
+
+void createRecord(String productNameController, String weightController, String emailController) async {
+  final databaseReference = Firestore.instance;
+  await databaseReference.collection("products")
+      .add({
+    'productName': productNameController,
+    'weight': int.parse(weightController),
+    'email' : emailController
+  });
+
 }
 
 class Record {
