@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-
-
 import 'authentication.dart';
+import 'package:mailmagario/myDrawer.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.onSignedOut})
@@ -39,6 +37,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: _signOut)
         ],
       ),
+      drawer: MyDrawer(),
       body: Center(
         child: Container(
             padding:
