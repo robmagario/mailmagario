@@ -163,7 +163,7 @@ class Record {
         assert(map['id'] != null),
         email = map['email'],
         familyName = map['familyName'],
-        firstName = map['firstName',
+        firstName = map['firstName'],
         id = map['id'];
 
   Record.fromSnapshot(DocumentSnapshot snapshot)
