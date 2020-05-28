@@ -148,3 +148,29 @@ class _MyCreateProduct extends State<MyCreateProduct> {
 
   }
 }
+
+class Record {
+  final String email;
+  final String familyName;
+  final String firstName;
+  final String id;
+  final DocumentReference reference;
+
+  Record.fromMap(Map<String, dynamic> map, {this.reference})
+      : assert(map['email'] != null),
+        assert(map['familyName'] != null),
+        assert(map['firstName'] != null),
+        assert(map['id'] != null),
+        email = map['email'],
+        familyName = map['familyName'],
+        firstName = map['firstName',
+        id = map['id'];
+
+  Record.fromSnapshot(DocumentSnapshot snapshot)
+      : this.fromMap(snapshot.data, reference: snapshot.reference);
+/*
+  @override
+  String toString() => "Record<$name:$votes>";
+  */
+
+}
