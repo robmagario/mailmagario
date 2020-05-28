@@ -12,7 +12,7 @@ class CreateProduct extends StatelessWidget {
     return MaterialApp(
 
       title: "See Shipping Rates",
-      home: MyCreateProduct(),
+      home: new Scaffold(body: new MyCreateProduct()),
 
 
     );
@@ -27,6 +27,10 @@ class MyCreateProduct extends StatefulWidget {
 }
 
 class _MyCreateProduct extends State<MyCreateProduct> {
+  @override
+  void initState() {
+    super.initState();
+  }
   String dropdownValue = 'argentina';
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
@@ -43,7 +47,7 @@ class _MyCreateProduct extends State<MyCreateProduct> {
     TextEditingController productNameController = TextEditingController();
     TextEditingController weightController = TextEditingController();
     TextEditingController emailController = TextEditingController();
-    final snackBar = SnackBar(content: Text('Product created successfully!'));
+    final snackBar = SnackBar(content: Text('Product created successfully!'), backgroundColor: Colors.deepOrange);
 
     return new Container(
             padding: EdgeInsets.all(20),
@@ -105,7 +109,7 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: RaisedButton(
                         onPressed: () {
-                         // FocusScope.of(context).requestFocus(new FocusNode());
+                            FocusScope.of(context).requestFocus(new FocusNode());
                           // Validate returns true if the form is valid, or false
                           // otherwise.
                           if (_formKey.currentState.validate()) {
