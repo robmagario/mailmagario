@@ -6,11 +6,8 @@ class SeeShippingRates extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
         title: "See Shipping Rates",
         home: MyShippingRates(),
-
-
     );
   }
 }

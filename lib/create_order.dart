@@ -7,7 +7,7 @@ class CreateOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      title: "See Shipping Rates",
+
       home: MyCreateOrder(),
 
 
@@ -23,11 +23,11 @@ class MyCreateOrder extends StatefulWidget {
 }
 
 class _MyCreateOrder extends State<MyCreateOrder> {
-  String dropdownValue = 'argentina';
+
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('See Shipping Rates')),
+      appBar: AppBar(title: Text('Create Order')),
       body: _buildBody(context),
 
     );
@@ -37,7 +37,8 @@ class _MyCreateOrder extends State<MyCreateOrder> {
   Widget _buildBody(BuildContext context) {
 
 
-    return StreamBuilder<QuerySnapshot>(
+    return Container(
+      child: Text('Test'),
     );
 
   }

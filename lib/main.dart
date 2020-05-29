@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mailmagario/search_user.dart';
 import 'package:mailmagario/see_shipping_rates.dart';
 import 'package:mailmagario/LoginSignupPage.dart';
 import 'package:mailmagario/authentication.dart';
@@ -18,7 +19,9 @@ class MyApp extends StatelessWidget {
         primaryColor: const Color(0xFFff5722),
         accentColor: const Color(0xFFff5722),
         canvasColor: const Color(0xFFfafafa),
+    // Define the default font family.
         fontFamily: 'Roboto',
+
       ),
       initialRoute: '/',
       routes: {
@@ -27,7 +30,8 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/see_shipping_rates': (context) => SeeShippingRates(),
         '/create_product': (context) => CreateProduct(),
-
+        '/create_order': (context) => CreateOrder(),
+        '/search_user': (context) => SearchUser(),
       },
       title: 'Stork',
     );

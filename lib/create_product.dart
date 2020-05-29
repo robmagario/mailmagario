@@ -31,7 +31,7 @@ class _MyCreateProduct extends State<MyCreateProduct> {
   void initState() {
     super.initState();
   }
-  String dropdownValue = 'argentina';
+  //String dropdownValue = 'argentina';
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(

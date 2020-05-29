@@ -29,6 +29,12 @@ class MyDrawer extends StatelessWidget {
               Navigator.pushNamed(context, '/create_order');
             },
           ),
+          ListTile(
+            title: Text('Search User'),
+            onTap: () {
+              Navigator.pushNamed(context, '/search_user');
+            },
+          ),
         ],
       ),
     );
