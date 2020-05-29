@@ -20,20 +20,13 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: Text('Admin Create Product'),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              //Navigator.pop(context);
               Navigator.pushNamed(context, '/create_product');
             },
           ),
           ListTile(
             title: Text('Create Order'),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              //Navigator.pop(context);
+              Navigator.pushNamed(context, '/create_order');
             },
           ),
         ],
