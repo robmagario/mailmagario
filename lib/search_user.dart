@@ -133,6 +133,9 @@ class _MySearchUser extends State<MySearchUser> {
           title: Text(record.email),
           trailing: Text(record.firstName.toString()),
          // onTap: () => record.reference.updateData({'votes': FieldValue.increment(1)}),       ),
+            onTap: ()=>
+              print(record.email),
+
       ),
     ),);
   }
