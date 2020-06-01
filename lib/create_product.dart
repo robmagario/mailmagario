@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 import 'package:mailmagario/myDrawer.dart';
 
+
 //final people = <Person>[Person('Alice', '123 Main'), Person('Bob', '456 Main')];
 
 class CreateProduct extends StatelessWidget {
@@ -112,7 +113,7 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                             FocusScope.of(context).requestFocus(new FocusNode());
                           // Validate returns true if the form is valid, or false
                           // otherwise.
-                          if (_formKey.currentState.validate()) {
+                         if (_formKey.currentState.validate()) {
                             createRecord(productNameController.text, weightController.text, emailController.text);
                             Scaffold.of(context).showSnackBar(snackBar);
                           }

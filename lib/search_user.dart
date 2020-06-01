@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:mailmagario/myDrawer.dart';
 
 class SearchUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Search User",
 
-
-      home: MySearchUser(),
+      home: new Scaffold(body: new MySearchUser()),
 
 
     );
@@ -23,13 +24,17 @@ class MySearchUser extends StatefulWidget {
 }
 
 class _MySearchUser extends State<MySearchUser> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
-  final _formKey = GlobalKey<FormState>();
+  final _formKey2 = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Search User')),
       body: _buildBody(context),
-
+      drawer: MyDrawer(),
     );
   }
 
@@ -44,7 +49,7 @@ class _MySearchUser extends State<MySearchUser> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [Text("Enter email address"), Form(
-          key: _formKey,
+          key: _formKey2,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -72,22 +77,15 @@ class _MySearchUser extends State<MySearchUser> {
                     FocusScope.of(context).requestFocus(new FocusNode());
                     // Validate returns true if the form is valid, or false
                     // otherwise.
-                    if (_formKey.currentState.validate()) {
-                     // createRecord(productNameController.text, weightController.text, emailController.text);
-                     // Scaffold.of(context).showSnackBar(snackBar);
-                    //  _showRelatedEmails(emailController.text);
-                      firestoreInstance
-                          .collection("users")
-                          .where("email", isGreaterThanOrEqualTo: emailController.text)
-                          .getDocuments()
-                          .then((value) {
-                        value.documents.forEach((result) {
-                          print(result.data);
-                        });
-                      });
-                    }
-                  },
-                  child: Text('Submit'),
+                    if (_formKey2.currentState.validate()) {
+                        Scaffold.of(context).showBottomSheet((BuildContext context) {
+                          return new Container(
+                               height: 350.0,
+                               child: _showRelatedEmails(emailController.text),
+                            );
+                          });
+                      }
+                  child: Text('Submit');}
                 ),
               ),
             ],
@@ -102,7 +100,9 @@ class _MySearchUser extends State<MySearchUser> {
   }
   Widget _showRelatedEmails(String emailController) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('users').snapshots(),
+      stream: Firestore.instance.collection('users')
+          .where("email", isGreaterThanOrEqualTo: emailController)
+          .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
