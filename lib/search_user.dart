@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mailmagario/myDrawer.dart';
+import 'package:mailmagario/create_product.dart';
 
 class SearchUser extends StatelessWidget {
   @override
@@ -133,8 +134,14 @@ class _MySearchUser extends State<MySearchUser> {
           title: Text(record.email),
           trailing: Text(record.firstName.toString()),
          // onTap: () => record.reference.updateData({'votes': FieldValue.increment(1)}),       ),
-            onTap: ()=>
-              print(record.email),
+            onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CreateProduct("eeeeee"),
+            ),
+          );
+          }
 
       ),
     ),);

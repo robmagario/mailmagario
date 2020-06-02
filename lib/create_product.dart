@@ -8,30 +8,41 @@ import 'package:mailmagario/myDrawer.dart';
 //final people = <Person>[Person('Alice', '123 Main'), Person('Bob', '456 Main')];
 
 class CreateProduct extends StatelessWidget {
+  final String id;
+  CreateProduct({Key key, @required this.id}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
 
       title: "See Shipping Rates",
-      home: new Scaffold(body: new MyCreateProduct()),
+      home: new Scaffold(body: new MyCreateProduct(id)),
 
 
     );
   }
 }
 class MyCreateProduct extends StatefulWidget {
-  MyCreateProduct({Key key}) : super(key: key);
+  final String id;
+  MyCreateProduct(this.id);
+  //MyCreateProduct({Key key}) : super(key: key);
   @override
   _MyCreateProduct createState() {
-    return _MyCreateProduct();
+    return _MyCreateProduct(id);
   }
 }
 
 class _MyCreateProduct extends State<MyCreateProduct> {
+  String id;
   @override
   void initState() {
     super.initState();
   }
+
+  _MyCreateProduct(String id) {
+    this.id = id;
+  }
+
   //String dropdownValue = 'argentina';
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
@@ -91,21 +102,7 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                         return null;
                       },
                     ),
-                    TextFormField(
-                      controller: emailController,
-                      keyboardType: TextInputType.text,
-                      decoration: const InputDecoration(
-                        icon: Icon(Icons.person),
-                        hintText: 'Autocomplete email',
-                        labelText: 'Email of the user',
-                      ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'Please enter the email of the user!';
-                        }
-                        return null;
-                      },
-                    ),
+                    Text (id),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: RaisedButton(
