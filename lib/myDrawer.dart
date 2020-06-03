@@ -19,19 +19,13 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text('Admin Create Product'),
-            onTap: () {
-              Navigator.pushNamed(context, '/create_product');
-            },
-          ),
-          ListTile(
             title: Text('Create Order'),
             onTap: () {
               Navigator.pushNamed(context, '/create_order');
             },
           ),
           ListTile(
-            title: Text('Search User'),
+            title: Text('Search User and create product'),
             onTap: () {
               Navigator.pushNamed(context, '/search_user');
             },

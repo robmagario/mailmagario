@@ -111,7 +111,7 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                           // Validate returns true if the form is valid, or false
                           // otherwise.
                          if (_formKey.currentState.validate()) {
-                            createRecord(productNameController.text, weightController.text, emailController.text);
+                            createRecord(productNameController.text, weightController.text, person.id);
                             Scaffold.of(context).showSnackBar(snackBar);
                           }
                         },
@@ -130,13 +130,13 @@ class _MyCreateProduct extends State<MyCreateProduct> {
 
   }
 
-void createRecord(String productNameController, String weightController, String emailController) async {
+void createRecord(String productNameController, String weightController, String id) async {
   final databaseReference = Firestore.instance;
   await databaseReference.collection("products")
       .add({
     'productName': productNameController,
     'weight': int.parse(weightController),
-    'email' : emailController
+    'id' : id,
   });
 
 }
