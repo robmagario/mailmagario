@@ -138,7 +138,7 @@ class _MySearchUser extends State<MySearchUser> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CreateProduct("eeeeee"),
+              builder: (context) => CreateProduct(record.id),
             ),
           );
           }

@@ -4,18 +4,17 @@ import 'package:flutter/rendering.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 import 'package:mailmagario/myDrawer.dart';
 
-
-//final people = <Person>[Person('Alice', '123 Main'), Person('Bob', '456 Main')];
-
 class CreateProduct extends StatelessWidget {
+
+ // CreateProduct({Key key, @required this.id}) : super(key: key);
+  CreateProduct(this.id);
   final String id;
-  CreateProduct({Key key, @required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      title: "See Shipping Rates",
+      title: "Create Product",
       home: new Scaffold(body: new MyCreateProduct(id)),
 
 
@@ -102,6 +101,7 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                         return null;
                       },
                     ),
+                    Text ("User email address"),
                     Text (id),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
