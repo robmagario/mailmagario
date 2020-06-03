@@ -5,41 +5,41 @@ import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart
 import 'package:mailmagario/myDrawer.dart';
 
 class CreateProduct extends StatelessWidget {
-
+  final Person person;
  // CreateProduct({Key key, @required this.id}) : super(key: key);
-  CreateProduct(this.id);
-  final String id;
+  CreateProduct(this.person);
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
 
       title: "Create Product",
-      home: new Scaffold(body: new MyCreateProduct(id)),
+      home: new Scaffold(body: new MyCreateProduct(person)),
 
 
     );
   }
 }
 class MyCreateProduct extends StatefulWidget {
-  final String id;
-  MyCreateProduct(this.id);
+  final Person person;
+  MyCreateProduct(this.person);
   //MyCreateProduct({Key key}) : super(key: key);
   @override
   _MyCreateProduct createState() {
-    return _MyCreateProduct(id);
+    return _MyCreateProduct(person);
   }
 }
 
 class _MyCreateProduct extends State<MyCreateProduct> {
-  String id;
+  Person person;
   @override
   void initState() {
     super.initState();
   }
 
-  _MyCreateProduct(String id) {
-    this.id = id;
+  _MyCreateProduct(Person person) {
+    this.person = person;
   }
 
   //String dropdownValue = 'argentina';
@@ -102,7 +102,7 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                       },
                     ),
                     Text ("User email address"),
-                    Text (id),
+                    Text (person.email),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: RaisedButton(
@@ -165,4 +165,11 @@ class Record {
   String toString() => "Record<$name:$votes>";
   */
 
+}
+
+class Person {
+  final String id;
+  final String email;
+
+  Person(this.id, this.email);
 }

@@ -121,6 +121,7 @@ class _MySearchUser extends State<MySearchUser> {
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
     final record = Record.fromSnapshot(data);
+    Person person;
 
     return Padding(
       key: ValueKey(record.email),
@@ -138,7 +139,7 @@ class _MySearchUser extends State<MySearchUser> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CreateProduct(record.id),
+              builder: (context) => CreateProduct(new Person(record.id, record.email)),
             ),
           );
           }
