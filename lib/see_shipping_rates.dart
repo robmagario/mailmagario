@@ -5,10 +5,8 @@ import 'package:flutter/rendering.dart';
 class SeeShippingRates extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: "See Shipping Rates",
-        home: MyShippingRates(),
-    );
+    return new MyShippingRates();
+
   }
 }
   class MyShippingRates extends StatefulWidget {

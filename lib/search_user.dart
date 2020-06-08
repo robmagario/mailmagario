@@ -7,13 +7,10 @@ import 'package:mailmagario/create_product.dart';
 class SearchUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Search User",
-
-      home: new Scaffold(body: new MySearchUser()),
+    return new MySearchUser();
 
 
-    );
+
   }
 }
 class MySearchUser extends StatefulWidget {

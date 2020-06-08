@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 import 'package:mailmagario/myDrawer.dart';
 
 class CreateProduct extends StatelessWidget {
@@ -12,13 +11,10 @@ class CreateProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-
-      title: "Create Product",
-      home: new Scaffold(body: new MyCreateProduct(person)),
+    return new MyCreateProduct(person);
 
 
-    );
+
   }
 }
 class MyCreateProduct extends StatefulWidget {

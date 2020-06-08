@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
         '/': (context) => MyHomePage(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/see_shipping_rates': (context) => SeeShippingRates(),
-        //'/create_product': (context) => CreateProduct(),
         '/create_order': (context) => CreateOrder(),
         '/search_user': (context) => SearchUser(),
       },
