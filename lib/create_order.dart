@@ -63,8 +63,12 @@ class _MyCreateOrder extends State<MyCreateOrder> {
         ),
         child: ListTile(
           title: Text(record.productName),
-          trailing: Text(record.weight.toString()),
-          onTap: () => record.reference.updateData({'votes': FieldValue.increment(1)}),       ),
+          trailing: (record.selected == true)
+              ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
+          onTap: () => (record.selected == true)
+            ? record.reference.updateData({'selected': false}):record.reference.updateData({'selected': true}),
+        
+        ),
       ),
     );
   }
@@ -77,14 +81,17 @@ class Record {
   final String productName;
   final int weight;
   final DocumentReference reference;
+  bool selected;
 
   Record.fromMap(Map<String, dynamic> map, {this.reference})
       : assert(map['id'] != null),
         assert(map['productName'] != null),
         assert(map['weight'] != null),
+        assert(map['selected'] != null),
         id = map['id'],
         productName = map['productName'],
-        weight = map['weight'];
+        weight = map['weight'],
+        selected = map['selected'];
 
   Record.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);

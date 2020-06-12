@@ -132,6 +132,7 @@ void createRecord(String productNameController, String weightController, String 
     'productName': productNameController,
     'weight': int.parse(weightController),
     'id' : id,
+    'selected' : false,
   });
 
 }
