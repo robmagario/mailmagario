@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'authentication.dart';
 import 'package:mailmagario/myDrawer.dart';
+import 'package:flutter_clipboard_manager/flutter_clipboard_manager.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.onSignedOut})
@@ -47,7 +48,33 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[Row(
               children: [Text('My Hong Kong address:')]
             ),Row(
-                children: [Text('27A, The Met Focus')]
+                children: [Text('27A, The Met Focus'),
+                  RaisedButton(
+                    child: Text('Copy to Clipboard'),
+                    onPressed: () {
+                      final snackBar = SnackBar(
+                        content: Text('Copied to Clipboard'),
+                        action: SnackBarAction(
+                          label: 'Okay',
+                          onPressed: () {},
+                        ),
+                      );
+                      Scaffold.of(context).showSnackBar(snackBar);
+                      // FlutterClipboardManager.copyToClipBoard(
+                      //         "Clipboard content!")
+                      //     .then((result) {
+                      //   final snackBar = SnackBar(
+                      //     content: Text('Copied to Clipboard'),
+                      //     action: SnackBarAction(
+                      //       label: 'Okey',
+                      //       onPressed: () {},
+                      //     ),
+                      //   );
+                      //   Scaffold.of(context).showSnackBar(snackBar);
+                      // });
+                    },
+                  ),
+                ]
             ),Row(
                 children: [Text('8 Pak Kung Street')]
             ),Row(

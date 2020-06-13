@@ -32,6 +32,7 @@ dev_dependencies:
   firebase_auth: ^0.16.0
   cloud_firestore: ^0.13.5
   google_fonts: ^0.3.8
+  flutter_clipboard_manager: ^0.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

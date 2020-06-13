@@ -19,6 +19,12 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            title: Text('My HK Address'),
+            onTap: () {
+              Navigator.pushNamed(context, '/');
+            },
+          ),
+          ListTile(
             title: Text('Create Order'),
             onTap: () {
               Navigator.pushNamed(context, '/create_order');
