@@ -52,26 +52,18 @@ class _HomePageState extends State<HomePage> {
                   RaisedButton(
                     child: Text('Copy to Clipboard'),
                     onPressed: () {
-                      final snackBar = SnackBar(
-                        content: Text('Copied to Clipboard'),
-                        action: SnackBarAction(
-                          label: 'Okay',
-                          onPressed: () {},
-                        ),
-                      );
-                      Scaffold.of(context).showSnackBar(snackBar);
-                      // FlutterClipboardManager.copyToClipBoard(
-                      //         "Clipboard content!")
-                      //     .then((result) {
-                      //   final snackBar = SnackBar(
-                      //     content: Text('Copied to Clipboard'),
-                      //     action: SnackBarAction(
-                      //       label: 'Okey',
-                      //       onPressed: () {},
-                      //     ),
-                      //   );
-                      //   Scaffold.of(context).showSnackBar(snackBar);
-                      // });
+                      FlutterClipboardManager.copyToClipBoard(
+                                 "27A, The Met Focus")
+                             .then((result) {
+                        final snackBar = SnackBar(
+                          content: Text('Copied to Clipboard'),
+                          action: SnackBarAction(
+                            label: 'Okay',
+                            onPressed: () {},
+                          ),
+                        );
+                        Scaffold.of(context).showSnackBar(snackBar);
+                      });
                     },
                   ),
                 ]
