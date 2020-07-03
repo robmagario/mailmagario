@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mailmagario/firestore_service.dart';
 import 'package:mailmagario/LoginSignupPage.dart';
+import 'package:provider/provider.dart';
+
 
 abstract class BaseAuth {
   Future<String> signIn(String email, String password);
@@ -36,6 +38,8 @@ class Auth implements BaseAuth {
     FirebaseUser user = await _firebaseAuth.currentUser();
     return user;
   }
+
+
 
   Future<void> signOut() async {
     return _firebaseAuth.signOut();

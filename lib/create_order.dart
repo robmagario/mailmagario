@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mailmagario/myDrawer.dart';
-import 'package:mailmagario/main.dart';
+import 'authentication.dart';
 
 class CreateOrder extends StatelessWidget {
   @override
@@ -14,7 +14,15 @@ class CreateOrder extends StatelessWidget {
   }
 }
 class MyCreateOrder extends StatefulWidget {
-  MyCreateOrder({Key key}) : super(key: key);
+ // MyCreateOrder({Key key}) : super(key: key);
+
+  MyCreateOrder({Key key, this.auth, this.userId, this.onSignedOut})
+      : super(key: key);
+
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
+  final String userId;
+
   @override
   _MyCreateOrder createState() {
     return _MyCreateOrder();
@@ -22,6 +30,22 @@ class MyCreateOrder extends StatefulWidget {
 }
 
 class _MyCreateOrder extends State<MyCreateOrder> {
+  String _userId = "";
+  String _email = "";
+
+  @override
+  void initState() {
+    super.initState();
+    widget.auth.getCurrentUser().then((user) {
+      setState(() {
+        if (user != null) {
+          _userId = user?.uid;
+          _email = user?.email;
+        }
+      });
+    });
+  }
+
 
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
@@ -34,7 +58,7 @@ class _MyCreateOrder extends State<MyCreateOrder> {
 
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('products').snapshots(),
+      stream: Firestore.instance.collection('products').where('id', isEqualTo: _userId).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
