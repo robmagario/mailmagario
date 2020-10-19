@@ -3,10 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
   final CollectionReference _usersCollectionReference =
-  Firestore.instance.collection("users");
+  FirebaseFirestore.instance.collection("users");
   Future createUser(User user) async {
     try {
-      await _usersCollectionReference.document(user.id).setData(user.toJson());
+      await _usersCollectionReference.doc(user.id).set(user.toJson());
     } catch (e) {
       return e.message;
     }

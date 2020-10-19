@@ -366,3 +366,4 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     }
   }
 }
+
