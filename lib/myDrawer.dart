@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:mailmagario/providers/login_provider.dart';
 
 
 class MyDrawer extends StatelessWidget {
@@ -36,6 +38,12 @@ class MyDrawer extends StatelessWidget {
               Navigator.pushNamed(context, '/search_user');
             },
           ),
+          RaisedButton(
+            onPressed: () {
+              context.read<LoginProvider>().logout();
+            },
+            child: Text('Logout'),
+          )
         ],
       ),
     );

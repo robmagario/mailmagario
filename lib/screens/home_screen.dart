@@ -170,6 +170,14 @@ class HomeScreen extends StatelessWidget {
                         },
                       ),]
                 ),
+                RaisedButton(
+                  onPressed: () {
+                    context.read<LoginProvider>().logout();
+                  },
+                  child: Text('Logout'),
+                )
+
+
               ],
             )
         )
