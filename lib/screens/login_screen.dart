@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
 */
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomPadding: false,
       key: _key,
       appBar: AppBar(
         title: Text('Stork HK Postal Box'),
