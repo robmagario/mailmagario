@@ -83,7 +83,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           ],
         ),
       ),*/
-      /*floatingActionButton: new FloatingActionButton.extended(
+      floatingActionButton: new FloatingActionButton.extended(
         icon: Icon(Icons.attach_money),
         label: Text('See shipping rates'),
         backgroundColor: Colors.indigoAccent,
@@ -93,7 +93,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         shape: new BeveledRectangleBorder(
             borderRadius: new BorderRadius.circular(0.0)),
       ),
-      */
+
       drawer: MyDrawer(),
     );
   }

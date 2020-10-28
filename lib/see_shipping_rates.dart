@@ -33,10 +33,10 @@ class SeeShippingRates extends StatelessWidget {
 
 
        return StreamBuilder<QuerySnapshot>(
-           stream: Firestore.instance.collection("country").snapshots(),
+           stream: FirebaseFirestore.instance.collection("country").snapshots(),
            builder: (context, snapshot) {
-             var length = snapshot.data.documents.length;
-             DocumentSnapshot ds = snapshot.data.documents[length - 1];
+             var length = snapshot.data.docs.length;
+             DocumentSnapshot ds = snapshot.data.docs[length - 1];
              return new Container(
                  padding: EdgeInsets.all(20),
                  alignment: Alignment.center,
@@ -50,10 +50,10 @@ class SeeShippingRates extends StatelessWidget {
                    dropdownValue = newValue;
                  });
                },
-               items: snapshot.data.documents.map((DocumentSnapshot document) {
+               items: snapshot.data.docs.map((DocumentSnapshot document) {
                  return DropdownMenuItem(
-                     value: document.documentID.toString(),
-                     child: new Text(document.data['name']));
+                     value: document.id.toString(),
+                     child: new Text(document.data()["name"]));
                }).toList(),
 
 

@@ -3,6 +3,7 @@ import 'package:mailmagario/providers/login_provider.dart';
 import 'package:mailmagario/screens/home_screen.dart';
 import 'package:mailmagario/screens/login_screen.dart';
 import 'package:mailmagario/screens/splash_screen.dart';
+import 'package:mailmagario/see_shipping_rates.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
@@ -10,6 +11,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        // '/': (context) => MyMain(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/see_shipping_rates': (context) => SeeShippingRates(),
+       // '/create_order': (context) => CreateOrder(),
+      //  '/search_user': (context) => SearchUser(),
+      },
       title: 'Flutter Provider Proto',
       theme: ThemeData(
         brightness: Brightness.dark,

@@ -103,6 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
        //     _createAccountLabel(),
             secondaryButton(),
+            seeShippingRates(),
           ],
         ),
       ),
@@ -188,6 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: <Widget>[
             _emailWidget(),
             _passwordWidget(),
+
           ],
         ),
       );
@@ -255,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
           elevation: 5.0,
           minWidth: 250.0,
           height: 42.0,
-          color: Colors.indigoAccent,
+          color: Colors.lightGreen[900],
           child: new Text('\$ See Our Shipping Rates',
               style: new TextStyle(fontSize: 20.0, color: Colors.white)),
           onPressed: () {
@@ -297,7 +299,7 @@ class _LoginScreenState extends State<LoginScreen> {
           width: 10,
         ),
         Text(
-          'Sgn in',
+          'Sign in',
           style: TextStyle(
               color: Color(0xfff79c4f),
               fontSize: 13,
