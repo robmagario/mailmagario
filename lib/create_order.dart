@@ -1,28 +1,29 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mailmagario/myDrawer.dart';
-import 'authentication.dart';
+import 'package:mailmagario/providers/login_provider.dart';
+import 'package:provider/provider.dart';
+
+//import 'authentication.dart';
 
 class CreateOrder extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return new MyCreateOrder();
-
-
-
   }
 }
 class MyCreateOrder extends StatefulWidget {
  // MyCreateOrder({Key key}) : super(key: key);
 
-  MyCreateOrder({Key key, this.auth, this.userId, this.onSignedOut})
-      : super(key: key);
+ // MyCreateOrder({Key key, this.userId, this.onSignedOut})
+ //     : super(key: key);
 
-  final BaseAuth auth;
-  final VoidCallback onSignedOut;
-  final String userId;
-
+ // final BaseAuth auth;
+ // final VoidCallback onSignedOut;
+//  final String userId = context.watch<LoginProvider>().user;
   @override
   _MyCreateOrder createState() {
     return _MyCreateOrder();
@@ -32,7 +33,7 @@ class MyCreateOrder extends StatefulWidget {
 class _MyCreateOrder extends State<MyCreateOrder> {
   String _userId = "";
   String _email = "";
-
+/*
   @override
   void initState() {
     super.initState();
@@ -46,7 +47,7 @@ class _MyCreateOrder extends State<MyCreateOrder> {
     });
   }
 
-
+*/
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,12 +58,13 @@ class _MyCreateOrder extends State<MyCreateOrder> {
   }
 
   Widget _buildBody(BuildContext context) {
+    final User _userId = context.watch<LoginProvider>().user;
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('products').where('id', isEqualTo: _userId).snapshots(),
+      stream: FirebaseFirestore.instance.collection('products').where('id', isEqualTo: _userId).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
-        return _buildList(context, snapshot.data.documents);
+        return _buildList(context, snapshot.data.docs);
       },
     );
   }
@@ -90,7 +92,7 @@ class _MyCreateOrder extends State<MyCreateOrder> {
           trailing: (record.selected == true)
               ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
           onTap: () => (record.selected == true)
-            ? record.reference.updateData({'selected': false}):record.reference.updateData({'selected': true}),
+            ? record.reference.update({'selected': false}):record.reference.update({'selected': true}),
         
         ),
       ),
@@ -118,7 +120,7 @@ class Record {
         selected = map['selected'];
 
   Record.fromSnapshot(DocumentSnapshot snapshot)
-      : this.fromMap(snapshot.data, reference: snapshot.reference);
+      : this.fromMap(snapshot.data(), reference: snapshot.reference);
 
 //  @override
  // String toString() => "Record<$name:$votes>";

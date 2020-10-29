@@ -4,6 +4,7 @@ import 'package:mailmagario/screens/home_screen.dart';
 import 'package:mailmagario/screens/login_screen.dart';
 import 'package:mailmagario/screens/splash_screen.dart';
 import 'package:mailmagario/see_shipping_rates.dart';
+import 'package:mailmagario/create_order.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         // '/': (context) => MyMain(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/see_shipping_rates': (context) => SeeShippingRates(),
-       // '/create_order': (context) => CreateOrder(),
+        '/create_order': (context) => CreateOrder(),
       //  '/search_user': (context) => SearchUser(),
       },
       title: 'Flutter Provider Proto',
