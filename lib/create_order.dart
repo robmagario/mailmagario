@@ -60,7 +60,7 @@ class _MyCreateOrder extends State<MyCreateOrder> {
   Widget _buildBody(BuildContext context) {
     final User _userId = context.watch<LoginProvider>().user;
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('products').where('id', isEqualTo: _userId).snapshots(),
+      stream: FirebaseFirestore.instance.collection('products').where('id', isEqualTo: _userId.uid).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
@@ -89,6 +89,7 @@ class _MyCreateOrder extends State<MyCreateOrder> {
         ),
         child: ListTile(
           title: Text(record.productName),
+          subtitle: Text(record.weight.toString() + " grams"),
           trailing: (record.selected == true)
               ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
           onTap: () => (record.selected == true)
