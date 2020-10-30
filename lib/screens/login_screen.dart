@@ -89,16 +89,28 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _password,
             ),*/
             RaisedButton(
-              onPressed: () async {
+              onPressed:  _formMode == FormMode.LOGIN
+                 ? () async {
                 if (!await context
                     .read<LoginProvider>()
                     .login(_email.text, _password.text)) {
                   _key.currentState.showSnackBar(
                       SnackBar(content: Text('Unable to login.')));
                 }
+              }
+              :() async {
+                if (!await context
+                    .read<LoginProvider>()
+                    .signup(_email.text, _firstName.text, _familyName.text, _password.text, "user")) {
+                  _key.currentState.showSnackBar(
+                      SnackBar(content: Text('Unable to login.')));
+                }
               },
-              child: Text('Login',
-              style: TextStyle(fontSize: 20, color: Colors.white),),
+              child:  _formMode == FormMode.LOGIN
+                  ? new Text('Login',
+                  style: new TextStyle(fontSize: 20.0, color: Colors.white))
+                  : new Text('Create account',
+                  style: new TextStyle(fontSize: 20.0, color: Colors.white)),
 
             ),
        //     _createAccountLabel(),
