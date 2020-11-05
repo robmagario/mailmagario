@@ -33,6 +33,12 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            title: Text('Create Address'),
+            onTap: () {
+              Navigator.pushNamed(context, '/create_address');
+            },
+          ),
+          ListTile(
             title: Text('Search User and create product'),
             onTap: () {
               Navigator.pushNamed(context, '/search_user');

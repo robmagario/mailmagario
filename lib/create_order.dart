@@ -6,7 +6,6 @@ import 'package:mailmagario/myDrawer.dart';
 import 'package:mailmagario/providers/login_provider.dart';
 import 'package:provider/provider.dart';
 
-//import 'authentication.dart';
 
 class CreateOrder extends StatelessWidget {
 
@@ -16,14 +15,7 @@ class CreateOrder extends StatelessWidget {
   }
 }
 class MyCreateOrder extends StatefulWidget {
- // MyCreateOrder({Key key}) : super(key: key);
 
- // MyCreateOrder({Key key, this.userId, this.onSignedOut})
- //     : super(key: key);
-
- // final BaseAuth auth;
- // final VoidCallback onSignedOut;
-//  final String userId = context.watch<LoginProvider>().user;
   @override
   _MyCreateOrder createState() {
     return _MyCreateOrder();
@@ -31,23 +23,8 @@ class MyCreateOrder extends StatefulWidget {
 }
 
 class _MyCreateOrder extends State<MyCreateOrder> {
-  String _userId = "";
-  String _email = "";
-/*
-  @override
-  void initState() {
-    super.initState();
-    widget.auth.getCurrentUser().then((user) {
-      setState(() {
-        if (user != null) {
-          _userId = user?.uid;
-          _email = user?.email;
-        }
-      });
-    });
-  }
 
-*/
+
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
