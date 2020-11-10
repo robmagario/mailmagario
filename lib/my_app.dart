@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       },
       title: 'Flutter Provider Proto',
       theme: ThemeData(
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         primarySwatch: Colors.orange,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         accentColor: Colors.cyan[600],
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
           headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Roboto'),
         ),
       ),
       home: _showScreen(context),

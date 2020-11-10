@@ -4,6 +4,7 @@ import 'package:mailmagario/providers/login_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:mailmagario/myDrawer.dart';
 import 'package:flutter_clipboard_manager/flutter_clipboard_manager.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class HomeScreen extends StatelessWidget {
   final User user;
@@ -13,7 +14,17 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Home'),
+         actions: <Widget>[
+          IconButton(
+            icon: const Icon(FontAwesome.sign_out),
+            tooltip: 'logout',
+            onPressed: () {
+              context.read<LoginProvider>().logout();
+            },
+          )],
+
       ),
       drawer: MyDrawer(),
       body: Center(
@@ -39,160 +50,66 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   children: <Widget>[Text(' ')],
                 ),
-                Row(
-                    children: [Container(
-                      width: 200.0,
-                      child:Text(user.email),),
-                      RaisedButton(
-                        child: Text('Copy to Clipboard'),
-                        onPressed: () {
-                          FlutterClipboardManager.copyToClipBoard(
-                              "10E, The Met Focus")
-                              .then((result) {
-                            final snackBar = SnackBar(
-                              content: Text('Copied to Clipboard'),
-                              action: SnackBarAction(
-                                label: 'Okay',
-                                onPressed: () {},
-                              ),
-                            );
-                            Scaffold.of(context).showSnackBar(snackBar);
-                          });
-                        },
+                Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        leading: Icon(FontAwesome5.building),
+                        title: Text('Your HK address:'),
+                        subtitle: Text('Use this address as your "Ship to" address when purchasing from Hong Kong online retailers.'),
                       ),
-                    ]
-                ),Row(
-                    children: [Container(
-                      width: 200.0,
-                      child:Text('10E, The Met Focus'),),
-                      RaisedButton(
-                        child: Text('Copy to Clipboard'),
-                        onPressed: () {
-                          FlutterClipboardManager.copyToClipBoard(
-                              "10E, The Met Focus")
-                              .then((result) {
-                            final snackBar = SnackBar(
-                              content: Text('Copied to Clipboard'),
-                              action: SnackBarAction(
-                                label: 'Okay',
-                                onPressed: () {},
-                              ),
-                            );
-                            Scaffold.of(context).showSnackBar(snackBar);
-                          });
-                        },
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(top:8.0,left:8.0),
+                            child: Text('Address Line 1: Room 10E, The Met Focus'),
+                          ),
+                        ],
                       ),
-                    ]
-                ),Row(
-                    children: [Container(
-                      width: 200.0,
-                      child: Text('Street: 8 Pak Kung Street'),),
-                      RaisedButton(
-                        child: Text('Copy to Clipboard'),
-                        onPressed: () {
-                          FlutterClipboardManager.copyToClipBoard(
-                              "8 Pak Kung Street")
-                              .then((result) {
-                            final snackBar = SnackBar(
-                              content: Text('Copied to Clipboard'),
-                              action: SnackBarAction(
-                                label: 'Okay',
-                                onPressed: () {},
-                              ),
-                            );
-                            Scaffold.of(context).showSnackBar(snackBar);
-                          });
-                        },
-                      ),]
-                ),Row(
-                    children: [Container(
-                      width: 200.0,
-                      child: Text('District: Hung Hom'),),
-                      RaisedButton(
-                        child: Text('Copy to Clipboard'),
-                        onPressed: () {
-                          FlutterClipboardManager.copyToClipBoard(
-                              "Hung Hom")
-                              .then((result) {
-                            final snackBar = SnackBar(
-                              content: Text('Copied to Clipboard'),
-                              action: SnackBarAction(
-                                label: 'Okay',
-                                onPressed: () {},
-                              ),
-                            );
-                            Scaffold.of(context).showSnackBar(snackBar);
-                          });
-                        },
-                      ),]
-                ),
-                Row(
-                    children: [Container(
-                      width: 200.0,
-                      child: Text('City: Hong Kong'),),
-                      RaisedButton(
-                        child: Text('Copy to Clipboard'),
-                        onPressed: () {
-                          FlutterClipboardManager.copyToClipBoard(
-                              "Hong Kong")
-                              .then((result) {
-                            final snackBar = SnackBar(
-                              content: Text('Copied to Clipboard'),
-                              action: SnackBarAction(
-                                label: 'Okay',
-                                onPressed: () {},
-                              ),
-                            );
-                            Scaffold.of(context).showSnackBar(snackBar);
-                          });
-                        },
-                      ),]
-                ),
-                Row(
-                    children: [Container(
-                      width: 200.0,
-                      child: Text('TEL: 6818-3401'),),
-                      RaisedButton(
-                        child: Text('Copy to Clipboard'),
-                        onPressed: () {
-                          FlutterClipboardManager.copyToClipBoard(
-                              "6818-3401")
-                              .then((result) {
-                            final snackBar = SnackBar(
-                              content: Text('Copied to Clipboard'),
-                              action: SnackBarAction(
-                                label: 'Okay',
-                                onPressed: () {},
-                              ),
-                            );
-                            Scaffold.of(context).showSnackBar(snackBar);
-                          });
-                        },
-                      ),]
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    context.read<LoginProvider>().logout();
-                  },
-                  child: Text('Logout'),
-                )
+                      Row(
 
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0, bottom:8.0),
+                            child: Text('Address Line 2: Hung Hom'),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Builder (
+                            builder: (context) => FlatButton(
+                            child: Row(
+                              children: [Icon(FontAwesome5.copy),const Text('Copy'),],
+                            ),
+                            onPressed: () {
+                              FlutterClipboardManager.copyToClipBoard(
+                                  "10E, The Met Focus")
+                                  .then((result) {
+                                final snackBar = SnackBar(
+                                  content: Text('Copied to Clipboard'),
+                                  action: SnackBarAction(
+                                    label: 'Okay',
+                                    onPressed: () {},
+                                  ),
+                                );
+                                Scaffold.of(context).showSnackBar(snackBar);
+                              });
+                            },
+                            color: Colors.orange,
+                          )
+                          ) ],
+                      ),
+                    ],
+                  ),
+                ),
 
               ],
             )
         )
-        /*Column(
-          children: [
-            Text(user.email),
-            Text(user.uid),
-            RaisedButton(
-              onPressed: () {
-                context.read<LoginProvider>().logout();
-              },
-              child: Text('Logout'),
-            )
-          ],
-        ),*/
       ),
     );
   }

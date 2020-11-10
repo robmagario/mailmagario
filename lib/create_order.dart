@@ -78,8 +78,6 @@ class _MyCreateOrder extends State<MyCreateOrder> {
   }
 }
 
-
-
 class Record {
   final String id;
   final String productName;
