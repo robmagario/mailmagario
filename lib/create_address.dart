@@ -57,7 +57,7 @@ class _MyCreateAddress extends State<MyCreateAddress> {
     final record = Record.fromSnapshot(data);
 
     return Padding(
-      key: ValueKey(record.productName),
+      key: ValueKey(record.address1),
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Container(
         decoration: BoxDecoration(
@@ -65,8 +65,8 @@ class _MyCreateAddress extends State<MyCreateAddress> {
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: ListTile(
-          title: Text(record.productName),
-          subtitle: Text(record.weight.toString() + " grams"),
+          title: Text(record.address1),
+          subtitle: Text(record.city),
           trailing: (record.selected == true)
               ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
           onTap: () => (record.selected == true)
