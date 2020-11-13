@@ -36,24 +36,19 @@ class HomeScreen extends StatelessWidget {
               children: <Widget>[Row(
                 children: <Widget>[Text(user.email)],
               )
-                ,Row(
-                    children: [Container(
-
-                        child:Text('My Hong Kong address:'))]
-                ),Flexible(
-                  child: Container(
-
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[Text('Use this address for receiving your packages in HK.')],
-                    ),),),
+                ,
                 Row(
-                  children: <Widget>[Text(' ')],
+                  children: <Widget>[
+                    Padding(padding: const EdgeInsets.only(left:30.0)),
+                    ]
                 ),
                 Card(
+                  margin: EdgeInsets.only (left:20.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+
                     children: <Widget>[
+
                       const ListTile(
                         leading: Icon(FontAwesome5.building),
                         title: Text('Your HK address:'),
@@ -63,8 +58,8 @@ class HomeScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top:8.0,left:8.0),
-                            child: Text('Address Line 1: Room 10E, The Met Focus'),
+                            padding: const EdgeInsets.only(top:8.0,left:8.0, bottom:1.0),
+                            child: Text('Address Line 1: Flat 10E, The Met Focus'),
                           ),
                         ],
                       ),
@@ -72,8 +67,33 @@ class HomeScreen extends StatelessWidget {
 
                         children: <Widget>[
                           Padding(
+                            padding: const EdgeInsets.only(left: 8.0, bottom:1.0),
+                            child: Text('Address Line 2: Hung Hom, Kowloon'),
+                          ),
+                        ],
+                      ),
+                      Row(
+
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0, bottom:1.0),
+                            child: Text('Hong Kong, S.A.R.'),
+                          ),
+                        ],
+                      ),Row(
+
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0, bottom:1.0),
+                            child: Text('TEL: +852-6818-3401'),
+                          ),
+                        ],
+                      ), Row(
+
+                        children: <Widget>[
+                          Padding(
                             padding: const EdgeInsets.only(left: 8.0, bottom:8.0),
-                            child: Text('Address Line 2: Hung Hom'),
+                            child: Text('Postal Code: 999077 (if needed) '),
                           ),
                         ],
                       ),
@@ -87,7 +107,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             onPressed: () {
                               FlutterClipboardManager.copyToClipBoard(
-                                  "10E, The Met Focus")
+                                  "10E, The Met Focus, 8 Pak Kung Street, Hung Hom, Hong Kong S.A.R.")
                                   .then((result) {
                                 final snackBar = SnackBar(
                                   content: Text('Copied to Clipboard'),

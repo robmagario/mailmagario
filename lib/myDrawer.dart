@@ -17,7 +17,7 @@ class MyDrawer extends StatelessWidget {
           DrawerHeader(
             child: Text('Stork Menu'),
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Colors.orange,
             ),
           ),
           ListTile(
@@ -44,12 +44,13 @@ class MyDrawer extends StatelessWidget {
               Navigator.pushNamed(context, '/search_user');
             },
           ),
-          RaisedButton(
+       /*   RaisedButton(
             onPressed: () {
               context.read<LoginProvider>().logout();
             },
             child: Text('Logout'),
           )
+          */
         ],
       ),
     );

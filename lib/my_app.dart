@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mailmagario/create_address.dart';
 import 'package:mailmagario/providers/login_provider.dart';
 import 'package:mailmagario/screens/home_screen.dart';
 import 'package:mailmagario/screens/login_screen.dart';
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
         '/see_shipping_rates': (context) => SeeShippingRates(),
         '/create_order': (context) => CreateOrder(),
       //  '/search_user': (context) => SearchUser(),
+        '/create_address': (context) => CreateAddress(),
+
       },
       title: 'Flutter Provider Proto',
       theme: ThemeData(
