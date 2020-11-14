@@ -25,7 +25,7 @@ class MyCreateAddress extends StatefulWidget {
 
 class _MyCreateAddress extends State<MyCreateAddress> {
 
-
+  String dropdownValue = 'argentina';
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,8 +40,10 @@ class _MyCreateAddress extends State<MyCreateAddress> {
     TextEditingController nameController = TextEditingController();
     TextEditingController address1Controller = TextEditingController();
     TextEditingController address2Controller = TextEditingController();
-    TextEditingController weightController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
+    TextEditingController cityController = TextEditingController();
+    TextEditingController phoneController = TextEditingController();
+    TextEditingController zipCodeController = TextEditingController();
+    TextEditingController countryController = TextEditingController();
     final snackBar = SnackBar(content: Text('Product created successfully!'), backgroundColor: Colors.deepOrange);
 
     final User _userId = context.watch<LoginProvider>().user;
@@ -89,7 +91,7 @@ class _MyCreateAddress extends State<MyCreateAddress> {
                 controller: address2Controller,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.card_giftcard),
+                  icon: Icon(MaterialCommunityIcons.map_marker),
                   hintText: 'Please insert the address line 2',
                   labelText: 'Address Line 2',
                 ),
@@ -100,7 +102,84 @@ class _MyCreateAddress extends State<MyCreateAddress> {
                   return null;
                 },
               ),
-              Padding(
+              TextFormField(
+                controller: cityController,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  icon: Icon(MaterialCommunityIcons.city),
+                  hintText: 'Please insert the city',
+                  labelText: 'City',
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter the city!';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: phoneController,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  icon: Icon(MaterialCommunityIcons.phone),
+                  hintText: 'Please insert the phone',
+                  labelText: 'Phone',
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter the phone!';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: zipCodeController,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  icon: Text('〒'),
+                  hintText: 'Please insert the zip code',
+                  labelText: 'Zip Code',
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter the zip code!';
+                  }
+                  return null;
+                },
+              ),
+        StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance.collection("country").snapshots(),
+            builder: (context, snapshot) {
+              var length = snapshot.data.docs.length;
+              DocumentSnapshot ds = snapshot.data.docs[length - 1];
+              return new Container(
+                padding: EdgeInsets.all(20),
+                alignment: Alignment.center,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [Text("Please select your destination country"), DropdownButton(
+                    value: dropdownValue,
+
+                    onChanged: (String newValue) {
+                      setState(() {
+                        dropdownValue = newValue;
+                      });
+                    },
+                    items: snapshot.data.docs.map((DocumentSnapshot document) {
+                      return DropdownMenuItem(
+                          value: document.id.toString(),
+                          child: new Text(document.data()["name"]));
+                    }).toList(),
+
+
+                  ),
+                    ],
+
+                ),
+              );
+            }
+        ),
+    Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: RaisedButton(
                   onPressed: () {

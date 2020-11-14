@@ -57,7 +57,8 @@ class SeeShippingRates extends StatelessWidget {
                }).toList(),
 
 
-             ), Form(
+             ),
+                     Form(
                key: _formKey,
                child: Column(
                  crossAxisAlignment: CrossAxisAlignment.start,
