@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mailmagario/myDrawer.dart';
 import 'package:mailmagario/providers/login_provider.dart';
 import 'package:provider/provider.dart';
@@ -31,51 +32,99 @@ class _MyCreateAddress extends State<MyCreateAddress> {
       appBar: AppBar(title: Text('Create Address')),
       body: _buildBody(context),
       drawer: MyDrawer(),
+
     );
   }
 
   Widget _buildBody(BuildContext context) {
+    TextEditingController nameController = TextEditingController();
+    TextEditingController address1Controller = TextEditingController();
+    TextEditingController address2Controller = TextEditingController();
+    TextEditingController weightController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    final snackBar = SnackBar(content: Text('Product created successfully!'), backgroundColor: Colors.deepOrange);
+
     final User _userId = context.watch<LoginProvider>().user;
-    return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('addresses').where('userId', isEqualTo: _userId.uid).snapshots(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) return LinearProgressIndicator();
+    return new Container(
+      padding: EdgeInsets.all(20),
+      alignment: Alignment.center,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [Text("Create new address"), Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TextFormField(
+                controller: nameController,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  icon: Icon(MaterialCommunityIcons.account),
+                  hintText: 'Please insert the first name and family name',
+                  labelText: 'First name and Family Name',
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter the first name and family name!';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: address1Controller,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  icon: Icon(MaterialCommunityIcons.map_marker),
+                  hintText: 'Please insert the address line 1',
+                  labelText: 'Address Line 1',
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter the address line 1!';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: address2Controller,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.card_giftcard),
+                  hintText: 'Please insert the address line 2',
+                  labelText: 'Address Line 2',
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter the address line 2!';
+                  }
+                  return null;
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: RaisedButton(
+                  onPressed: () {
+                    FocusScope.of(context).requestFocus(new FocusNode());
+                    // Validate returns true if the form is valid, or false
+                    // otherwise.
+                    if (_formKey.currentState.validate()) {
+                      //createRecord(productNameController.text, weightController.text, person.id);
+                      Scaffold.of(context).showSnackBar(snackBar);
+                    }
+                  },
+                  child: Text('Submit'),
+                ),
+              ),
+            ],
+          ),
+        ),],
 
-        return _buildList(context, snapshot.data.docs);
-      },
-    );
-  }
-
-  Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
-    return ListView(
-      padding: const EdgeInsets.only(top: 20.0),
-      children: snapshot.map((data) => _buildListItem(context, data)).toList(),
-    );
-  }
-
-  Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
-    final record = Record.fromSnapshot(data);
-
-    return Padding(
-      key: ValueKey(record.address1),
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: ListTile(
-          title: Text(record.address1),
-          subtitle: Text(record.city),
-          trailing: (record.selected == true)
-              ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
-          onTap: () => (record.selected == true)
-              ? record.reference.update({'selected': false}):record.reference.update({'selected': true}),
-
-        ),
       ),
     );
   }
+
+
+
 }
 
 class Record {

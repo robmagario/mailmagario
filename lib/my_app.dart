@@ -7,6 +7,8 @@ import 'package:mailmagario/screens/splash_screen.dart';
 import 'package:mailmagario/see_shipping_rates.dart';
 import 'package:mailmagario/create_order.dart';
 import 'package:provider/provider.dart';
+import 'package:mailmagario/manage_addresses.dart';
+import 'package:mailmagario/search_user.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -20,7 +22,8 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/see_shipping_rates': (context) => SeeShippingRates(),
         '/create_order': (context) => CreateOrder(),
-      //  '/search_user': (context) => SearchUser(),
+        '/search_user': (context) => SearchUser(),
+        '/manage_addresses': (context) => ManageAddresses(),
         '/create_address': (context) => CreateAddress(),
 
       },
