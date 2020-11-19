@@ -6,6 +6,8 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mailmagario/myDrawer.dart';
 import 'package:mailmagario/providers/login_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoder/geocoder.dart';
 
 
 class CreateAddress extends StatelessWidget {
@@ -24,6 +26,15 @@ class MyCreateAddress extends StatefulWidget {
 }
 
 class _MyCreateAddress extends State<MyCreateAddress> {
+  Future<String> getCountryName() async {
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    debugPrint('location: ${position.latitude}');
+    final coordinates = new Coordinates(position.latitude, position.longitude);
+    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var first = addresses.first;
+    return first.countryName; // this will return country name
+  }
+
 
   String dropdownValue = 'argentina';
   final _formKey = GlobalKey<FormState>();
@@ -52,7 +63,7 @@ class _MyCreateAddress extends State<MyCreateAddress> {
       alignment: Alignment.center,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [Text("Create new address"), Form(
+        children: [Text("Create new address" + " "), Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,8 +164,8 @@ class _MyCreateAddress extends State<MyCreateAddress> {
               var length = snapshot.data.docs.length;
               DocumentSnapshot ds = snapshot.data.docs[length - 1];
               return new Container(
-                padding: EdgeInsets.all(20),
-                alignment: Alignment.center,
+                padding: EdgeInsets.only(top: 20.0),
+                alignment: Alignment.topLeft,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [Text("Please select your destination country"), DropdownButton(
@@ -187,7 +198,15 @@ class _MyCreateAddress extends State<MyCreateAddress> {
                     // Validate returns true if the form is valid, or false
                     // otherwise.
                     if (_formKey.currentState.validate()) {
-                      //createRecord(productNameController.text, weightController.text, person.id);
+                      createRecord(address1Controller.text,
+                          address2Controller.text,
+                          cityController.text,
+                          countryController.text,
+                          nameController.text,
+                          phoneController.text,
+                          true,
+                          _userId.uid.toString(),
+                          zipCodeController.text);
                       Scaffold.of(context).showSnackBar(snackBar);
                     }
                   },
@@ -201,8 +220,24 @@ class _MyCreateAddress extends State<MyCreateAddress> {
       ),
     );
   }
+}
 
-
+void createRecord(String address1Controller, String address2Controller,
+    String cityController, String countryController, String nameController, String phoneController,
+    bool selectedController, String userIdController, String zipCodeController) async {
+  final databaseReference = FirebaseFirestore.instance;
+  await databaseReference.collection("addresses")
+      .add({
+    'address1': address1Controller,
+    'address2': address2Controller,
+    'city': cityController,
+    'country': countryController,
+    'name': nameController,
+    'phone': phoneController,
+    'selected': selectedController,
+    'userId': userIdController,
+    'zipcode': zipCodeController,
+  });
 
 }
 
