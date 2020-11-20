@@ -57,7 +57,7 @@ class _MyCreateAddress extends State<MyCreateAddress> {
     TextEditingController countryController = TextEditingController();
     final snackBar = SnackBar(content: Text('Product created successfully!'), backgroundColor: Colors.deepOrange);
 
-    final User _userId = context.watch<LoginProvider>().user;
+    final String _userId = context.watch<LoginProvider>().user.uid;
     return new Container(
       padding: EdgeInsets.all(20),
       alignment: Alignment.center,
@@ -205,7 +205,7 @@ class _MyCreateAddress extends State<MyCreateAddress> {
                           nameController.text,
                           phoneController.text,
                           true,
-                          _userId.uid.toString(),
+                          _userId,
                           zipCodeController.text);
                       Scaffold.of(context).showSnackBar(snackBar);
                     }
@@ -236,7 +236,7 @@ void createRecord(String address1Controller, String address2Controller,
     'phone': phoneController,
     'selected': selectedController,
     'userId': userIdController,
-    'zipcode': zipCodeController,
+    'zipCode': zipCodeController,
   });
 
 }
