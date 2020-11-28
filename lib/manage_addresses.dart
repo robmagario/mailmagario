@@ -90,11 +90,12 @@ class _MyManageAddresses extends State<MyManageAddresses> {
         child: ListTile(
           title: Text(record.name),
           subtitle: Text(record.address1+' '+record.address2+' '+record.city+' '+record.phone+' '+record.zipCode),
-          trailing: (record.selected == true)
+
+        /*  trailing: (record.selected == true)
               ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
           onTap: () => (record.selected == true)
               ? record.reference.update({'selected': false}):record.reference.update({'selected': true}),
-
+*/
         ),
       ),
     );

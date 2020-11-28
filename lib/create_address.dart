@@ -26,13 +26,34 @@ class MyCreateAddress extends StatefulWidget {
 }
 
 class _MyCreateAddress extends State<MyCreateAddress> {
-  Future<String> getCountryName() async {
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    debugPrint('location: ${position.latitude}');
-    final coordinates = new Coordinates(position.latitude, position.longitude);
-    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    var first = addresses.first;
-    return first.countryName; // this will return country name
+  TextEditingController nameController;
+  TextEditingController address1Controller;
+  TextEditingController address2Controller;
+  TextEditingController cityController;
+  TextEditingController phoneController;
+  TextEditingController zipCodeController;
+  TextEditingController countryController;
+
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    address1Controller = TextEditingController();
+    address2Controller = TextEditingController();
+    cityController = TextEditingController();
+    phoneController = TextEditingController();
+    zipCodeController = TextEditingController();
+    countryController = TextEditingController();
+  }
+
+  void dispose() {
+    nameController.dispose();
+    address1Controller.dispose();
+    address2Controller.dispose();
+    cityController.dispose();
+    phoneController.dispose();
+    zipCodeController.dispose();
+    countryController.dispose();
+    super.dispose();
   }
 
 
@@ -48,13 +69,7 @@ class _MyCreateAddress extends State<MyCreateAddress> {
   }
 
   Widget _buildBody(BuildContext context) {
-    TextEditingController nameController = TextEditingController();
-    TextEditingController address1Controller = TextEditingController();
-    TextEditingController address2Controller = TextEditingController();
-    TextEditingController cityController = TextEditingController();
-    TextEditingController phoneController = TextEditingController();
-    TextEditingController zipCodeController = TextEditingController();
-    TextEditingController countryController = TextEditingController();
+
     final snackBar = SnackBar(content: Text('Product created successfully!'), backgroundColor: Colors.deepOrange);
 
     final String _userId = context.watch<LoginProvider>().user.uid;
@@ -180,7 +195,7 @@ class _MyCreateAddress extends State<MyCreateAddress> {
                       return DropdownMenuItem(
                           value: document.id.toString(),
                           child: new Text(document.data()["name"]));
-                    }).toList(),
+                   }).toList(),
 
 
                   ),
