@@ -90,7 +90,40 @@ class _MyManageAddresses extends State<MyManageAddresses> {
         child: ListTile(
           title: Text(record.name),
           subtitle: Text(record.address1+' '+record.address2+' '+record.city+' '+record.phone+' '+record.zipCode),
+          onLongPress: (){
+            //record.reference.delete();
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                //content: Text("fdffdffd"),
+                title: Text("Confirmation"),
+                content: Text("Would you like to delete this address?"),
+                actions: <Widget>[
+                  FlatButton(
+                      child: Text("Cancel"),
+                      onPressed: () => Navigator.of(context).pop()),
+                  FlatButton(
+                    child: Text("Yes, delete it."),
+                    onPressed: () =>record.reference.delete(), )
+                ],
 
+              ),
+            );
+            /* AlertDialog (
+              title: Text("Confirmation"),
+              content: Text("Would you like to delete this address?"),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("Cancel"),
+                  onPressed: null),
+                FlatButton(
+                  child: Text("Yes, delete it."),
+                  onPressed: () =>record.reference.delete(), )
+              ],
+            );*/
+        //    Navigator.of(context).pop();
+
+          },
         /*  trailing: (record.selected == true)
               ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
           onTap: () => (record.selected == true)
