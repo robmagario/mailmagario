@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0, bottom:1.0),
-                            child: Text('Address Line 2: Hung Hom, Kowloon'),
+                            child: Text('Address Line 2: 8 Pak Kung Street, Hung Hom, Kowloon'),
                           ),
                         ],
                       ),
@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0, bottom:1.0),
-                            child: Text('TEL: +852-6818-3401'),
+                            child: Text('TEL: +852-9400-9505'),
                           ),
                         ],
                       ), Row(
@@ -121,6 +121,90 @@ class HomeScreen extends StatelessWidget {
                             },
                             color: Colors.orange,
                           )
+                          ) ],
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.only (left:20.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+
+                    children: <Widget>[
+
+                      const ListTile(
+                        leading: Icon(FontAwesome5.building),
+                        title: Text('Your HK address in Chinese:'),
+                        subtitle: Text('The same address but in Chinese language in case you need it.'),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(top:8.0,left:8.0, bottom:1.0),
+                            child: Text('Address Line 1: 10E, 薈點'),
+                          ),
+                        ],
+                      ),
+                      Row(
+
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0, bottom:1.0),
+                            child: Text('Address Line 2: 香港紅磡北拱街8號'),
+                          ),
+                        ],
+                      ),
+                      Row(
+
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0, bottom:1.0),
+                            child: Text('香港'),
+                          ),
+                        ],
+                      ),Row(
+
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0, bottom:1.0),
+                            child: Text('TEL: +852-9400-9505'),
+                          ),
+                        ],
+                      ), Row(
+
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0, bottom:8.0),
+                            child: Text('Postal Code: 999077 (if needed) '),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Builder (
+                              builder: (context) => FlatButton(
+                                child: Row(
+                                  children: [Icon(FontAwesome5.copy),const Text('Copy'),],
+                                ),
+                                onPressed: () {
+                                  FlutterClipboardManager.copyToClipBoard(
+                                      "10E 薈點 香港紅磡北拱街8號 TEL:+852-9400-9505")
+                                      .then((result) {
+                                    final snackBar = SnackBar(
+                                      content: Text('Copied to Clipboard'),
+                                      action: SnackBarAction(
+                                        label: 'Okay',
+                                        onPressed: () {},
+                                      ),
+                                    );
+                                    Scaffold.of(context).showSnackBar(snackBar);
+                                  });
+                                },
+                                color: Colors.orange,
+                              )
                           ) ],
                       ),
                     ],
