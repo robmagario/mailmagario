@@ -95,7 +95,6 @@ class _MyManageAddresses extends State<MyManageAddresses> {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                //content: Text("fdffdffd"),
                 title: Text("Confirmation"),
                 content: Text("Would you like to delete this address?"),
                 actions: <Widget>[
@@ -104,25 +103,14 @@ class _MyManageAddresses extends State<MyManageAddresses> {
                       onPressed: () => Navigator.of(context).pop()),
                   FlatButton(
                     child: Text("Yes, delete it."),
-                    onPressed: () =>record.reference.delete(), )
+                    onPressed: () {
+                                    record.reference.delete();
+                                    Navigator.of(context).pop();
+                                  } )
                 ],
 
               ),
             );
-            /* AlertDialog (
-              title: Text("Confirmation"),
-              content: Text("Would you like to delete this address?"),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text("Cancel"),
-                  onPressed: null),
-                FlatButton(
-                  child: Text("Yes, delete it."),
-                  onPressed: () =>record.reference.delete(), )
-              ],
-            );*/
-        //    Navigator.of(context).pop();
-
           },
         /*  trailing: (record.selected == true)
               ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
