@@ -5,7 +5,9 @@ import 'package:flutter/rendering.dart';
 import 'package:mailmagario/myDrawer.dart';
 import 'package:mailmagario/providers/login_provider.dart';
 import 'package:provider/provider.dart';
-
+import 'package:get/get.dart';
+import 'package:mailmagario/controllers/cart_controller.dart';
+import 'package:mailmagario/models/product.dart';
 
 class CreateOrder extends StatelessWidget {
 
@@ -55,6 +57,7 @@ class _MyCreateOrder extends State<MyCreateOrder> {
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
     final record = Record.fromSnapshot(data);
+    final cartController = Get.put(CartController());
 
     return Padding(
       key: ValueKey(record.productName),
@@ -67,10 +70,28 @@ class _MyCreateOrder extends State<MyCreateOrder> {
         child: ListTile(
           title: Text(record.productName),
           subtitle: Text(record.weight.toString() + " grams"),
+          //trailing: (record.selected == true)
+        //      ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
+         // onTap: cartController.contains(item) ? null : ()
+          onTap: () {
+            Product product = new Product(id: record.id,
+                productName: record.productName,
+                weight: record.weight);
+            if (cartController.containsCart(product) == false) {
+              cartController.addToCart(product);
+            } else
+              {
+                cartController.removeFromCart(product);
+              }
+          },
+
+          /*
           trailing: (record.selected == true)
               ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
-          onTap: () => (record.selected == true)
-            ? record.reference.update({'selected': false}):record.reference.update({'selected': true}),
+          onTap: cart._items.contains(item) ? null : () => cart.add(item),
+          */
+          // onTap: () => (record.selected == true)
+         //   ? record.reference.update({'selected': false}):record.reference.update({'selected': true}),
         
         ),
       ),
@@ -81,7 +102,7 @@ class _MyCreateOrder extends State<MyCreateOrder> {
 class Record {
   final String id;
   final String productName;
-  final int weight;
+  final double weight;
   final DocumentReference reference;
   bool selected;
 
@@ -89,7 +110,7 @@ class Record {
       : assert(map['id'] != null),
         assert(map['productName'] != null),
         assert(map['weight'] != null),
-        assert(map['selected'] != null),
+    // assert(map['selected'] != null),
         id = map['id'],
         productName = map['productName'],
         weight = map['weight'],

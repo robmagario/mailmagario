@@ -127,7 +127,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.only (left:20.0),
+                  margin: EdgeInsets.only (left:20.0, top: 20.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
 

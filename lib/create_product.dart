@@ -126,13 +126,13 @@ class _MyCreateProduct extends State<MyCreateProduct> {
   }
 
 void createRecord(String productNameController, String weightController, String id) async {
-  final databaseReference = Firestore.instance;
+  final databaseReference = FirebaseFirestore.instance;
   await databaseReference.collection("products")
       .add({
     'productName': productNameController,
-    'weight': int.parse(weightController),
+    'weight': double.parse(weightController),
     'id' : id,
-    'selected' : false,
+    //'selected' : false,
   });
 
 }
