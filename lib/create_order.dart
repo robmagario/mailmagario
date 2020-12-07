@@ -38,6 +38,7 @@ class _MyCreateOrder extends State<MyCreateOrder> {
 
   Widget _buildBody(BuildContext context) {
     final User _userId = context.watch<LoginProvider>().user;
+
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('products').where('id', isEqualTo: _userId.uid).snapshots(),
       builder: (context, snapshot) {
@@ -49,6 +50,7 @@ class _MyCreateOrder extends State<MyCreateOrder> {
   }
 
   Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
+
     return ListView(
       padding: const EdgeInsets.only(top: 20.0),
       children: snapshot.map((data) => _buildListItem(context, data)).toList(),
@@ -58,6 +60,10 @@ class _MyCreateOrder extends State<MyCreateOrder> {
   Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
     final record = Record.fromSnapshot(data);
     final cartController = Get.put(CartController());
+    Product product = Product(id: record.id,
+        productName: record.productName,
+        weight: record.weight);
+
 
     return Padding(
       key: ValueKey(record.productName),
@@ -70,13 +76,11 @@ class _MyCreateOrder extends State<MyCreateOrder> {
         child: ListTile(
           title: Text(record.productName),
           subtitle: Text(record.weight.toString() + " grams"),
-          //trailing: (record.selected == true)
-        //      ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
-         // onTap: cartController.contains(item) ? null : ()
+          trailing: (cartController.containsCart(product) == true)
+             ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
+//  ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
           onTap: () {
-            Product product = new Product(id: record.id,
-                productName: record.productName,
-                weight: record.weight);
+
             if (cartController.containsCart(product) == false) {
               cartController.addToCart(product);
             } else
@@ -84,15 +88,6 @@ class _MyCreateOrder extends State<MyCreateOrder> {
                 cartController.removeFromCart(product);
               }
           },
-
-          /*
-          trailing: (record.selected == true)
-              ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
-          onTap: cart._items.contains(item) ? null : () => cart.add(item),
-          */
-          // onTap: () => (record.selected == true)
-         //   ? record.reference.update({'selected': false}):record.reference.update({'selected': true}),
-        
         ),
       ),
     );
@@ -110,7 +105,7 @@ class Record {
       : assert(map['id'] != null),
         assert(map['productName'] != null),
         assert(map['weight'] != null),
-    // assert(map['selected'] != null),
+
         id = map['id'],
         productName = map['productName'],
         weight = map['weight'],

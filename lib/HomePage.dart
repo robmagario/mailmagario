@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'authentication.dart';
 import 'package:mailmagario/myDrawer.dart';
@@ -192,3 +193,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+ */
