@@ -32,11 +32,13 @@ class HomeScreen extends StatelessWidget {
             padding:
             EdgeInsets.only(left: 10.0, right: 50.0, top: 30, bottom: 30),
 
-            child: Column (
-              children: <Widget>[Row(
+            child:
+            Column (
+              children: <Widget>[
+                /*Row(
                 children: <Widget>[Text(user.email)],
               )
-                ,
+                ,*/
                 Row(
                   children: <Widget>[
                     Padding(padding: const EdgeInsets.only(left:30.0)),

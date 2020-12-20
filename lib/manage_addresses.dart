@@ -7,9 +7,6 @@ import 'package:mailmagario/myDrawer.dart';
 import 'package:mailmagario/providers/login_provider.dart';
 import 'package:provider/provider.dart';
 
-
-
-
 class ManageAddresses extends StatelessWidget {
 
   @override
