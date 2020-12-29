@@ -1,4 +1,4 @@
-import 'package:mailmagario/LoginSignupPage.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
