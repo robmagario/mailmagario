@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:mailmagario/providers/login_provider.dart';
-import 'package:mailmagario/screens/signup_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:mailmagario/controllers/auth_controller.dart';
+import 'package:get/get.dart';
 
-class LoginScreen extends StatefulWidget {
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
 
 enum FormMode { LOGIN, SIGNUP }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = new GlobalKey<FormState>();
+class LoginScreen extends StatelessWidget {
+  final AuthController authController = AuthController.to;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+
+
+
+//class _LoginScreenState extends State<LoginScreen> {
+ // final _formKey = new GlobalKey<FormState>();
   TextEditingController _firstName;
   TextEditingController _familyName;
   TextEditingController _email;
@@ -25,47 +29,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    super.initState();
+   // super.initState();
     _firstName = TextEditingController(text: "");
     _familyName = TextEditingController(text: "");
     _email = TextEditingController(text: "");
     _password = TextEditingController(text: "");
   }
-/*
 
-  Widget _createAccountLabel() {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignUpScreen()));
-      },
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
-        padding: EdgeInsets.all(15),
-        alignment: Alignment.bottomCenter,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Don\'t have an account ?',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              'Register',
-              style: TextStyle(
-                  color: Color(0xfff79c4f),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(resizeToAvoidBottomPadding: false,
@@ -79,32 +49,14 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             logoWidget(),
             formWidget(),
-           /*TextField(
-              decoration: InputDecoration(hintText: 'Email'),
-              controller: _email,
-            ),
-            TextField(
-              decoration: InputDecoration(hintText: 'Password'),
-              obscureText: true,
-              controller: _password,
-            ),*/
             RaisedButton(
               onPressed:  _formMode == FormMode.LOGIN
                  ? () async {
-                if (!await context
-                    .read<LoginProvider>()
-                    .login(_email.text, _password.text)) {
-                  _key.currentState.showSnackBar(
-                      SnackBar(content: Text('Unable to login.')));
-                }
+                authController.signInWithEmailAndPassword(context);
               }
               :() async {
-                if (!await context
-                    .read<LoginProvider>()
-                    .signup(_email.text, _firstName.text, _familyName.text, _password.text, "user")) {
-                  _key.currentState.showSnackBar(
-                      SnackBar(content: Text('Unable to login.')));
-                }
+                // this is temporary because I have not coded the sign up part yet
+                authController.signInWithEmailAndPassword(context);
               },
               child:  _formMode == FormMode.LOGIN
                   ? new Text('Login',
@@ -163,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ? 'Family Name cannot be empty'
               : null,
      //     onSaved: (value) => _familyName = value.trim(),
-          controller: _familyName,
+          controller: authController.familyNameController,
         ),
       );
   }
@@ -236,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
             )),
         validator: (value) => value.isEmpty ? 'Email cannot be empty' : null,
        // onSaved: (value) => _email = value.trim(),
-        controller: _email,
+        controller: authController.emailController,
       ),
     );
   }
@@ -256,7 +208,7 @@ class _LoginScreenState extends State<LoginScreen> {
             )),
         validator: (value) => value.isEmpty ? 'Password cannot be empty' : null,
     //    onSaved: (value) => _password = value.trim(),
-        controller: _password,
+        controller: authController.passwordController,
       ),
     );
   }
@@ -273,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: new Text('\$ See Our Shipping Rates',
               style: new TextStyle(fontSize: 20.0, color: Colors.white)),
           onPressed: () {
-            Navigator.pushNamed(context, '/see_shipping_rates');
+        //    Navigator.pushNamed(context, '/see_shipping_rates');
           },
         ));
   }
@@ -326,17 +278,17 @@ class _LoginScreenState extends State<LoginScreen> {
   void showSignupForm() {
     _formKey.currentState.reset();
     _errorMessage = "";
-    setState(() {
+//    setState(() {
       _formMode = FormMode.SIGNUP;
-    });
+ //   });
   }
 
   void showLoginForm() {
     _formKey.currentState.reset();
     _errorMessage = "";
-    setState(() {
+  //  setState(() {
       _formMode = FormMode.LOGIN;
-    });
+   // });
   }
 
   Widget errorWidget() {
@@ -360,6 +312,6 @@ class _LoginScreenState extends State<LoginScreen> {
   void dispose() {
     _email.dispose();
     _password.dispose();
-    super.dispose();
+   // super.dispose();
   }
 }

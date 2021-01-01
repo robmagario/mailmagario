@@ -5,10 +5,12 @@ import 'package:provider/provider.dart';
 import 'package:mailmagario/myDrawer.dart';
 import 'package:flutter_clipboard_manager/flutter_clipboard_manager.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:mailmagario/controllers/auth_controller.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   final User user;
-
+  final AuthController authController = AuthController.to;
   const HomeScreen({Key key, this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,8 @@ class HomeScreen extends StatelessWidget {
             icon: const Icon(FontAwesome.sign_out),
             tooltip: 'logout',
             onPressed: () {
-              context.read<LoginProvider>().logout();
+          //    context.read<LoginProvider>().logout();
+              authController.signOut();
             },
           )],
 

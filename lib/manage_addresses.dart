@@ -6,6 +6,8 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mailmagario/myDrawer.dart';
 import 'package:mailmagario/providers/login_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:mailmagario/controllers/auth_controller.dart';
+import 'package:get/get.dart';
 
 class ManageAddresses extends StatelessWidget {
 
@@ -55,9 +57,10 @@ class _MyManageAddresses extends State<MyManageAddresses> {
   }
 
   Widget _buildBody(BuildContext context) {
-    final User _userId = context.watch<LoginProvider>().user;
+    AuthController authController = AuthController.to;
+    final String _userId = authController.user.toString();
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('addresses').where('userId', isEqualTo: _userId.uid).snapshots(),
+     // stream: FirebaseFirestore.instance.collection('addresses').where('userId', isEqualTo: _userId.uid).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 

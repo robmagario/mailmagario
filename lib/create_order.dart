@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:mailmagario/controllers/cart_controller.dart';
 import 'package:mailmagario/models/product.dart';
-
+import 'package:mailmagario/controllers/auth_controller.dart';
 class CreateOrder extends StatelessWidget {
 
   @override
@@ -37,10 +37,11 @@ class _MyCreateOrder extends State<MyCreateOrder> {
   }
 
   Widget _buildBody(BuildContext context) {
-    final User _userId = context.watch<LoginProvider>().user;
-
+  //  final User _userId = context.watch<LoginProvider>().user;
+    AuthController authController = AuthController.to;
+    final String _userId = authController.user.toString();
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('products').where('id', isEqualTo: _userId.uid).snapshots(),
+      //stream: FirebaseFirestore.instance.collection('products').where('id', isEqualTo: _userId.uid).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 

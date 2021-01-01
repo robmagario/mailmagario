@@ -8,7 +8,8 @@ import 'package:mailmagario/providers/login_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
-
+import 'package:get/get.dart';
+import 'package:mailmagario/controllers/auth_controller.dart';
 
 class CreateAddress extends StatelessWidget {
 
@@ -71,8 +72,10 @@ class _MyCreateAddress extends State<MyCreateAddress> {
   Widget _buildBody(BuildContext context) {
 
     final snackBar = SnackBar(content: Text('Product created successfully!'), backgroundColor: Colors.deepOrange);
-
-    final String _userId = context.watch<LoginProvider>().user.uid;
+    AuthController authController = AuthController.to;
+    //final String _userId = context.watch<LoginProvider>().user.uid;
+    final String _userId = authController.user.toString();
+    print (_userId);
     return new Container(
       padding: EdgeInsets.all(20),
       alignment: Alignment.center,
