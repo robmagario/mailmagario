@@ -11,6 +11,7 @@ import 'package:mailmagario/manage_addresses.dart';
 import 'package:mailmagario/search_user.dart';
 import 'package:get/get.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
+import 'package:mailmagario/constants/app_routes.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -19,24 +20,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       locale: Get.deviceLocale,
       initialRoute: '/',
-      /*routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        // '/': (context) => MyMain(),
-        '/see_shipping_rates': (context) => SeeShippingRates(),
-        '/create_order': (context) => CreateOrder(),
-        '/search_user': (context) => SearchUser(),
-        '/manage_addresses': (context) => ManageAddresses(),
-        '/create_address': (context) => CreateAddress(),
-
-      },*/
-        getPages: [
-        GetPage(name: '/', page: () => MyApp()),
-        GetPage(name: '/see_shipping_rates', page: () => SeeShippingRates()),
-          GetPage(name: '/create_order', page: () => CreateOrder()),
-          GetPage(name: '/search_user', page: () => SearchUser()),
-          GetPage(name: '/manage_addresses', page: () => ManageAddresses()),
-          GetPage(name: '/create_address', page: () => CreateAddress()),
-      ],
+      getPages: AppRoutes.routes,
       title: 'Flutter Provider Proto',
       theme: ThemeData(
         brightness: Brightness.light,

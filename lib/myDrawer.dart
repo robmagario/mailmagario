@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mailmagario/providers/login_provider.dart';
-
+import 'package:get/get.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -23,34 +23,27 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: Text('My HK Address'),
             onTap: () {
-              Navigator.pushNamed(context, '/');
+              Get.toNamed("/");
             },
           ),
           ListTile(
             title: Text('Create Order'),
             onTap: () {
-              Navigator.pushNamed(context, '/create_order');
+              Get.toNamed("/create_order");
             },
           ),
           ListTile(
             title: Text('Manage/Create Addresses'),
             onTap: () {
-              Navigator.pushNamed(context, '/manage_addresses');
+              Get.toNamed("/manage_addresses");
             },
           ),
           ListTile(
             title: Text('Search User and create product'),
             onTap: () {
-              Navigator.pushNamed(context, '/search_user');
+              Get.toNamed("/search_user");
             },
           ),
-       /*   RaisedButton(
-            onPressed: () {
-              context.read<LoginProvider>().logout();
-            },
-            child: Text('Logout'),
-          )
-          */
         ],
       ),
     );
