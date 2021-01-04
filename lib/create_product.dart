@@ -52,6 +52,7 @@ class _MyCreateProduct extends State<MyCreateProduct> {
   Widget _buildBody(BuildContext context) {
     TextEditingController productNameController = TextEditingController();
     TextEditingController weightController = TextEditingController();
+    TextEditingController receivedTrackingNumberController = TextEditingController();
     TextEditingController emailController = TextEditingController();
     final snackBar = SnackBar(content: Text('Product created successfully!'), backgroundColor: Colors.deepOrange);
 
@@ -96,6 +97,21 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                         return null;
                       },
                     ),
+                    TextFormField(
+                      controller: receivedTrackingNumberController,
+                      keyboardType: TextInputType.text,
+                      decoration: const InputDecoration(
+                        icon: Icon(Icons.confirmation_number),
+                        hintText: 'Please insert the tracking number when received',
+                        labelText: 'Tracking number when received',
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter the tracking number when received!';
+                        }
+                        return null;
+                      },
+                    ),
                     Text ("User email address"),
                     Text (person.email),
                     Padding(
@@ -106,7 +122,7 @@ class _MyCreateProduct extends State<MyCreateProduct> {
                           // Validate returns true if the form is valid, or false
                           // otherwise.
                          if (_formKey.currentState.validate()) {
-                            createRecord(productNameController.text, weightController.text, person.id);
+                            createRecord(productNameController.text, weightController.text, person.id, receivedTrackingNumberController.text);
                             Scaffold.of(context).showSnackBar(snackBar);
                           }
                         },
@@ -125,13 +141,15 @@ class _MyCreateProduct extends State<MyCreateProduct> {
 
   }
 
-void createRecord(String productNameController, String weightController, String id) async {
+void createRecord(String productNameController, String weightController, String userId, String receivedTrackingNumberController) async {
   final databaseReference = FirebaseFirestore.instance;
   await databaseReference.collection("products")
       .add({
     'productName': productNameController,
     'weight': double.parse(weightController),
-    'id' : id,
+    'receivedTrackingNumber': receivedTrackingNumberController,
+    'userId' : userId,
+    'createdOn':FieldValue.serverTimestamp()
   });
 
 }
