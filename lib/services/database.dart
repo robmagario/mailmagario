@@ -79,4 +79,18 @@ class Database {
       rethrow;
     }
   }
+
+  Future<void> updateSelectedProduct(bool newValue, String id) async {
+    try {
+      _firestore
+          .collection("products")
+          .doc(id)
+          .update({"selected": newValue});
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+
 }

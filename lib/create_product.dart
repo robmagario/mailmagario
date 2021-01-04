@@ -136,9 +136,6 @@ class _MyCreateProduct extends State<MyCreateProduct> {
             ),
           );
         }
-
-
-
   }
 
 void createRecord(String productNameController, String weightController, String userId, String receivedTrackingNumberController) async {
@@ -149,11 +146,13 @@ void createRecord(String productNameController, String weightController, String 
     'weight': double.parse(weightController),
     'receivedTrackingNumber': receivedTrackingNumberController,
     'userId' : userId,
-    'createdOn':FieldValue.serverTimestamp()
+    'createdOn':FieldValue.serverTimestamp(),
+    'selected': false,
   });
 
 }
 
+/*
 class Record {
   final String email;
   final String familyName;
@@ -173,13 +172,10 @@ class Record {
 
   Record.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data(), reference: snapshot.reference);
-/*
-  @override
-  String toString() => "Record<$name:$votes>";
-  */
+
 
 }
-
+*/
 class Person {
   final String id;
   final String email;

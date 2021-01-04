@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:mailmagario/models/product.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:mailmagario/controllers/product_controller.dart';
+import 'package:mailmagario/services/database.dart';
 
 class CreateOrder extends StatelessWidget {
   CreateOrder({Key key}) : super(key: key);
@@ -46,7 +47,26 @@ class CreateOrder extends StatelessWidget {
               child: ListView.builder(
                 itemCount: productController.products.length,
                 itemBuilder: (_, index) {
-                  return Text(productController.products[index].productName);
+                  return //Text(productController.products[index].productName);
+                    ListTile(
+                      title: Text(productController.products[index].productName),
+                      subtitle: Text(productController.products[index].weight.toString() + " grams"),
+                      trailing: (productController.products[index].selected == true)
+                          ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
+//  ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
+                      onTap: () {
+
+                        if (productController.products[index].selected == true) {
+                          Database().updateSelectedProduct(false, productController.products[index].id);
+                        } else
+                        {
+                          Database().updateSelectedProduct(true, productController.products[index].id);
+                        }
+                      },
+
+                    );
+
+
                 },
               ),
             );

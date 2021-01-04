@@ -12,6 +12,8 @@ class ProductModel {
    String receivedTrackingNumber;
    String sentTrackingNumber;
    String userId;
+   Timestamp createdOn;
+   bool selected;
 
   ProductModel({ this.id,
     this.productName,
@@ -19,6 +21,8 @@ class ProductModel {
     this.receivedTrackingNumber,
     this.sentTrackingNumber,
     this.userId,
+    this.createdOn,
+    this.selected,
   }
       );
 
@@ -30,7 +34,10 @@ class ProductModel {
          weight: snap.data()['weight'],
          receivedTrackingNumber: snap.data()['receivedTrackingNumber'],
          sentTrackingNumber: snap.data()['sentTrackingNumber'],
-         userId:snap.data()['userId']);
+         userId:snap.data()['userId'],
+         createdOn: snap.data()['createdOn'],
+         selected: snap.data()['selected'],
+     );
    }
 
 
