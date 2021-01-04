@@ -7,11 +7,6 @@ import 'package:mailmagario/screens/login_screen.dart';
 import 'package:mailmagario/screens/home_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/login_screen.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:flutter_starter/models/models.dart';
-//import 'package:flutter_starter/ui/auth/auth.dart';
-//import 'package:flutter_starter/ui/ui.dart';
-//import 'package:flutter_starter/ui/components/components.dart';
 
 
 class AuthController extends GetxController {
@@ -44,7 +39,6 @@ class AuthController extends GetxController {
     passwordController?.dispose();
     super.onClose();
   }
-
 
   handleAuthChanged(_firebaseUser) async {
     //get user data from firestore

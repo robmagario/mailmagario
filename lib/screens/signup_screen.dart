@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mailmagario/providers/login_provider.dart';
-import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override

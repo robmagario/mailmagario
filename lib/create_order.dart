@@ -3,12 +3,65 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mailmagario/myDrawer.dart';
-import 'package:mailmagario/providers/login_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:get/get.dart';
-import 'package:mailmagario/controllers/cart_controller.dart';
 import 'package:mailmagario/models/product.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
+import 'package:mailmagario/controllers/product_controller.dart';
+
+class CreateOrder extends StatelessWidget {
+  CreateOrder({Key key}) : super(key: key);
+  AuthController authController = AuthController.to;
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    ProductController c = Get.put<ProductController>(ProductController());
+    return Scaffold(
+      key: scaffoldKey,
+      drawer: MyDrawer(),
+      appBar: AppBar(
+        /*title: Obx(() => authController.user != null
+              ? Text(" ${authController?.user?.value?.email}")
+              : Container()),*/
+        title: Text('Create Order'),
+        centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              scaffoldKey.currentState.openDrawer();
+            },
+            icon: Icon(Icons.menu)),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: () {
+                authController.signOut();
+              })
+        ],
+      ),
+      body: GetX<ProductController>(
+        init: Get.put<ProductController>(ProductController()),
+        builder: (ProductController productController) {
+          if (productController != null && productController.products != null) {
+            return Container(
+              child: ListView.builder(
+                itemCount: productController.products.length,
+                itemBuilder: (_, index) {
+                  return Text(productController.products[index].productName);
+                },
+              ),
+            );
+          } else {
+            return Text("loading...");
+          }
+        },
+      ),
+
+    );
+  }
+}
+
+
+/*
 class CreateOrder extends StatelessWidget {
 
   @override
@@ -115,7 +168,7 @@ class Record {
   Record.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data(), reference: snapshot.reference);
 
-//  @override
- // String toString() => "Record<$name:$votes>";
+
 }
 
+*/

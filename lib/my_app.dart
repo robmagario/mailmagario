@@ -1,16 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mailmagario/create_address.dart';
-import 'package:mailmagario/providers/login_provider.dart';
-import 'package:mailmagario/screens/home_screen.dart';
-import 'package:mailmagario/screens/login_screen.dart';
-import 'package:mailmagario/screens/splash_screen.dart';
-import 'package:mailmagario/see_shipping_rates.dart';
-import 'package:mailmagario/create_order.dart';
-import 'package:provider/provider.dart';
-import 'package:mailmagario/manage_addresses.dart';
-import 'package:mailmagario/search_user.dart';
 import 'package:get/get.dart';
-import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:mailmagario/constants/app_routes.dart';
 
 

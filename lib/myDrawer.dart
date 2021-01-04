@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:mailmagario/providers/login_provider.dart';
 import 'package:get/get.dart';
 
 class MyDrawer extends StatelessWidget {

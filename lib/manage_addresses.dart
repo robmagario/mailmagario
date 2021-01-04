@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mailmagario/myDrawer.dart';
-import 'package:mailmagario/providers/login_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
