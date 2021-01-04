@@ -8,6 +8,8 @@ class ProductController extends GetxController {
 
   List<ProductModel> get products => productList.value;
 
+  var total = 0.obs;
+
   @override
   void onInit() {
     String uid = Get.find<AuthController>().user.toString();
