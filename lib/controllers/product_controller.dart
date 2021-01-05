@@ -10,6 +10,14 @@ class ProductController extends GetxController {
 
   var total = 0.obs;
 
+  addtoTotal(double weighttoAdd) {
+    total = total + weighttoAdd.toInt();
+  }
+
+  deductfromTotal (double weighttoDeduct) {
+    total = total - weighttoDeduct.toInt();
+  }
+
   @override
   void onInit() {
     String uid = Get.find<AuthController>().user.toString();
