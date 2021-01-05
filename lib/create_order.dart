@@ -43,7 +43,7 @@ class CreateOrder extends StatelessWidget {
         init: Get.put<ProductController>(ProductController()),
         builder: (ProductController productController) {
           if (productController != null && productController.products != null) {
-            return Row(
+            return Column(
               children: [Expanded(
             child: ListView.builder(
                 itemCount: productController.products.length,
@@ -72,14 +72,14 @@ class CreateOrder extends StatelessWidget {
 
                 },
               ),),
-          //Divider(),
+          Divider(),
           Align(
           alignment: Alignment.centerRight,
           child: Text(
           // remember, context.select allows you to
           // listen to specific properties, and ignore the rest of a class
           'TOTAL: ${productController.total.toString()} grams',
-          //style: Theme.of(context).textTheme.headline3,
+          style: Theme.of(context).textTheme.headline3,
           ),)
               ]
             );
