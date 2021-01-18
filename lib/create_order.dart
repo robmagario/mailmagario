@@ -8,6 +8,7 @@ import 'package:mailmagario/models/product.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:mailmagario/controllers/product_controller.dart';
 import 'package:mailmagario/services/database.dart';
+import 'package:mailmagario/controllers/create_order_controller.dart';
 
 class CreateOrder extends StatelessWidget {
   CreateOrder({Key key}) : super(key: key);
@@ -16,14 +17,11 @@ class CreateOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductController c = Get.put<ProductController>(ProductController());
+
     return Scaffold(
       key: scaffoldKey,
       drawer: MyDrawer(),
       appBar: AppBar(
-        /*title: Obx(() => authController.user != null
-              ? Text(" ${authController?.user?.value?.email}")
-              : Container()),*/
         title: Text('Create Order'),
         centerTitle: true,
         leading: IconButton(
@@ -39,32 +37,21 @@ class CreateOrder extends StatelessWidget {
               })
         ],
       ),
-      body: GetX<ProductController>(
-        init: Get.put<ProductController>(ProductController()),
-        builder: (ProductController productController) {
-          if (productController != null && productController.products != null) {
+      body: GetX<CreateOrderController>(
+        init: Get.put<CreateOrderController>(CreateOrderController()),
+        builder: (CreateOrderController createOrderController) {
+          if (createOrderController != null && createOrderController.products != null) {
             return Column(
               children: [Expanded(
             child: ListView.builder(
-                itemCount: productController.products.length,
+                itemCount: createOrderController.products.length,
                 itemBuilder: (_, index) {
                   return //Text(productController.products[index].productName);
                     ListTile(
-                      title: Text(productController.products[index].productName),
-                      subtitle: Text(productController.products[index].weight.toString() + " grams"),
-                      trailing: (productController.products[index].selected == true)
-                          ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
-//  ? Icon(Icons.check_box):Icon(Icons.check_box_outline_blank),
+                      title: Text(createOrderController.products[index].productName),
+                      subtitle: Text(createOrderController.products[index].weight.toString() + " grams"),
                       onTap: () {
-
-                        if (productController.products[index].selected == true) {
-                          Database().updateSelectedProduct(false, productController.products[index].id);
-                          productController.deductfromTotal(productController.products[index].weight);
-                        } else
-                        {
-                          Database().updateSelectedProduct(true, productController.products[index].id);
-                          productController.addtoTotal(productController.products[index].weight);
-                        }
+                        Get.toNamed("/products/${createOrderController.products[index].id.toString()}");
                       },
 
                     );
@@ -78,7 +65,7 @@ class CreateOrder extends StatelessWidget {
           child: Text(
           // remember, context.select allows you to
           // listen to specific properties, and ignore the rest of a class
-          'TOTAL: ${productController.total.toString()} grams',
+          'TOTAL:  grams',
           style: Theme.of(context).textTheme.headline3,
           ),)
               ]

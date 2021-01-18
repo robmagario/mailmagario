@@ -50,6 +50,12 @@ class Database {
     }
   }
 
+  Future<ProductModel> findOne(String id) async {
+   // var result = await _firestore.doc(id).get();
+    var result = await _firestore.collection("products").doc(id).get();
+    return ProductModel.fromSnapshot(result);
+  }
+
   Stream<List<ProductModel>> productStream(String uid) {
     return _firestore
        /* .collection("users")

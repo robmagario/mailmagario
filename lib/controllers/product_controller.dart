@@ -1,3 +1,4 @@
+/*
 import 'package:get/get.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:mailmagario/models/product.dart';
@@ -25,3 +26,5 @@ class ProductController extends GetxController {
         .bindStream(Database().productStream(uid)); //stream coming from firebase
   }
 }
+
+ */
