@@ -24,28 +24,24 @@ class ProductController extends GetxController {
 
   loadProduct() async {
     try {
-
-
       setProduct(await Database().findOne(id));
   } catch (error) {
   print(error.toString());
   }
 }
-/*
+
 addProduct() {
   try {
     CartItemModel cartItem =
     appController.cartItems.value.firstWhere((cartItem) {
       return cartItem.product.id == this.product.id;
     });
-    cartItem.incrementQuantity();
+    cartItem.makeTrue();
   } catch (error) {
-    appController.cartItems.add(CartItemModel(
-      product: this.product,
-      quantity: 1,
-    ));
+     print ("there was an error when trying to add product");
+
   }
   Get.back();
 }
-*/
+
 }
