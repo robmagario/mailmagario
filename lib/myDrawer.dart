@@ -21,25 +21,30 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: Text('My HK Address'),
             onTap: () {
-              Get.toNamed("/");
+              print(Get.currentRoute);
+              Get.back();
+              Get.offNamed("/");
             },
           ),
           ListTile(
             title: Text('Create Order'),
             onTap: () {
-              Get.toNamed("/create_order");
+              Get.back();
+              Get.offNamed("/create_order");
             },
           ),
           ListTile(
             title: Text('Manage/Create Addresses'),
             onTap: () {
-              Get.toNamed("/manage_addresses");
+              Get.back();
+              Get.offNamed("/manage_addresses");
             },
           ),
           ListTile(
             title: Text('Search User and create product'),
             onTap: () {
-              Get.toNamed("/search_user");
+              Get.back();
+              Get.offNamed("/search_user");
             },
           ),
         ],
