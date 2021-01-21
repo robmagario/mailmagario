@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mailmagario/controllers/auth_controller.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class MyDrawer extends StatelessWidget {
+  final AuthController authController = AuthController.to;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -19,6 +22,7 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            leading: Icon(FontAwesome5.building),
             title: Text('My HK Address'),
             onTap: () {
               print(Get.currentRoute);
@@ -27,6 +31,7 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: Icon(AntDesign.file1),
             title: Text('Create Order'),
             onTap: () {
               Get.back();
@@ -34,6 +39,7 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: Icon(FontAwesome5.building),
             title: Text('Manage/Create Addresses'),
             onTap: () {
               Get.back();
@@ -41,10 +47,18 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: Icon(Feather.gift),
             title: Text('Search User and create product'),
             onTap: () {
               Get.back();
               Get.offNamed("/search_user");
+            },
+          ),
+          ListTile(
+            leading: Icon(Feather.log_out),
+            title: Text('Log out'),
+            onTap: () {
+              authController.signOut();
             },
           ),
         ],
@@ -52,3 +66,4 @@ class MyDrawer extends StatelessWidget {
     );
   }
 }
+

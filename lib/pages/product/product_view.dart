@@ -33,10 +33,17 @@ class Product extends StatelessWidget {
                   })
             ],
           ),
-          body: SingleChildScrollView(
+          body: Container(
+            padding: EdgeInsets.all(25),
+            decoration: BoxDecoration(
+            //  color: AppColors.WHITE,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25),
+                topRight: Radius.circular(25),
+              ),
+            ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.max,
+
               children: <Widget>[
                 Obx(
                       () => Text(
@@ -68,7 +75,13 @@ class Product extends StatelessWidget {
                     ),
                   ),
                 ),
-
+                Container(
+                  child: FloatingActionButton.extended(
+                onPressed: () {controller.addProduct();},
+                icon: Icon(Feather.shopping_cart),
+                label: Text('ADD TO CART'),
+                  ),
+                ),
               ],
             ),
           ),

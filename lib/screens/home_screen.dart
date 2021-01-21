@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
             icon: const Icon(FontAwesome.sign_out),
             tooltip: 'logout',
             onPressed: () {
-          //    context.read<LoginProvider>().logout();
+
               authController.signOut();
             },
           )],
