@@ -7,9 +7,9 @@ import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
-  final User user;
+//  final User user;
   final AuthController authController = AuthController.to;
-  const HomeScreen({Key key, this.user}) : super(key: key);
+//  const HomeScreen({Key key, this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +21,6 @@ class HomeScreen extends StatelessWidget {
             icon: const Icon(FontAwesome.sign_out),
             tooltip: 'logout',
             onPressed: () {
-
               authController.signOut();
             },
           )],

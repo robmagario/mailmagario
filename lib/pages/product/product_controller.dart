@@ -38,8 +38,11 @@ addProduct() {
     });
     cartItem.makeTrue();
   } catch (error) {
-     print ("there was an error when trying to add product");
-
+     //print ("there was an error when trying to add product");
+    appController.cartItems.add(CartItemModel(
+      product: this.product,
+      selected: true,
+    ));
   }
   Get.back();
 }

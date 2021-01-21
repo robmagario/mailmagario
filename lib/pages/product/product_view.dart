@@ -68,7 +68,6 @@ class Product extends StatelessWidget {
                 Obx(
                       () => Text(
                     controller.product.receivedTrackingNumber,
-                    //  controller.id.toString(),
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,

@@ -12,9 +12,7 @@ import 'package:mailmagario/controllers/create_order_controller.dart';
 import 'package:mailmagario/widgets/appbar_action.dart';
 
 class CreateOrder extends StatelessWidget {
- // CreateOrder({Key key}) : super(key: key);
   AuthController authController = AuthController.to;
- // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +20,10 @@ class CreateOrder extends StatelessWidget {
         init: CreateOrderController(),
         builder: (controller) {
           return Scaffold(
-            //key: scaffoldKey,
             drawer: MyDrawer(),
             appBar: AppBar(
               title: Text('Create Order'),
               centerTitle: true,
-              /*leading: IconButton(
-                  onPressed: () {
-                    scaffoldKey.currentState.openDrawer();
-                  },
-                  icon: Icon(Icons.menu)),*/
               actions: <Widget>[
                 Obx(
                       () =>
