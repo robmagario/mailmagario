@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:mailmagario/controllers/cart_controller.dart';
+import 'package:mailmagario/pages/cart/cart_controller.dart';
 import 'package:mailmagario/my_app.dart';
 import 'package:mailmagario/screens/splash_screen.dart';
 import 'package:mailmagario/see_shipping_rates.dart';
@@ -9,6 +9,7 @@ import 'package:mailmagario/create_address.dart';
 import 'package:mailmagario/create_order.dart';
 import 'package:mailmagario/screens/home_screen.dart';
 import 'package:mailmagario/pages/product/product_view.dart';
+import 'package:mailmagario/pages/cart/cart_view.dart';
 
 class AppRoutes {
   AppRoutes._(); //this is to prevent anyone from instantiating this object
@@ -20,5 +21,6 @@ class AppRoutes {
     GetPage(name: '/manage_addresses', page: () => ManageAddresses()),
     GetPage(name: '/create_address', page: () => CreateAddress()),
     GetPage(name: "products/:id", page: () => Product()),
+    GetPage(name: "/cart", page: () => Cart()),
   ];
 }
