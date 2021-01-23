@@ -9,11 +9,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 class Product extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   AuthController authController = AuthController.to;
+  final productController = Get.put(ProductController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProductController>(
-      init: ProductController(),
-      builder: (controller) {
         return Scaffold(
           key: scaffoldKey,
           drawer: MyDrawer(),
@@ -47,7 +45,7 @@ class Product extends StatelessWidget {
               children: <Widget>[
                 Obx(
                       () => Text(
-                    controller.product.productName,
+                    productController.product.productName,
                       //  controller.id.toString(),
                     style: TextStyle(
                       fontSize: 32,
@@ -57,7 +55,7 @@ class Product extends StatelessWidget {
                 ),
                 Obx(
                       () => Text(
-                    controller.product.weight.toString(),
+                    productController.product.weight.toString(),
                     //  controller.id.toString(),
                     style: TextStyle(
                       fontSize: 32,
@@ -67,7 +65,7 @@ class Product extends StatelessWidget {
                 ),
                 Obx(
                       () => Text(
-                    controller.product.receivedTrackingNumber,
+                    productController.product.receivedTrackingNumber,
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
@@ -76,7 +74,7 @@ class Product extends StatelessWidget {
                 ),
                 Container(
                   child: FloatingActionButton.extended(
-                onPressed: () {controller.addProduct();},
+                onPressed: () {productController.addProduct();},
                 icon: Icon(Feather.shopping_cart),
                 label: Text('ADD TO CART'),
                   ),
@@ -86,7 +84,6 @@ class Product extends StatelessWidget {
           ),
           //bottomNavigationBar: Obx(() => ProductDetails(controller.product)),
         );
-      },
-    );
+
   }
 }

@@ -6,7 +6,7 @@ import 'package:mailmagario/see_shipping_rates.dart';
 import 'package:mailmagario/search_user.dart';
 import 'package:mailmagario/manage_addresses.dart';
 import 'package:mailmagario/create_address.dart';
-import 'package:mailmagario/create_order.dart';
+import 'package:mailmagario/pages/create_order/create_order_view.dart';
 import 'package:mailmagario/screens/home_screen.dart';
 import 'package:mailmagario/pages/product/product_view.dart';
 import 'package:mailmagario/pages/cart/cart_view.dart';
