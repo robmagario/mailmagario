@@ -1,6 +1,7 @@
 # mailmagario
 
 マガリオ社内で使用するアプリです。
+this version has GETX
 
 ## 詳細
 
