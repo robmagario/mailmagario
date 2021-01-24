@@ -58,9 +58,7 @@ class Database {
 
   Stream<List<ProductModel>> productStream(String uid) {
     return _firestore
-       /* .collection("users")
-        .document(uid)
-        */
+       // .doc(uid)
         .collection("products")
         .snapshots()
         .map((QuerySnapshot query) {

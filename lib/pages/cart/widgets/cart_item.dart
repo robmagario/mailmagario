@@ -30,6 +30,13 @@ class CartItem extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              Text(
+                this.cartItem.product.id,
+                style: TextStyle(
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               SizedBox(height: 5),
               Row(
                 children: <Widget>[

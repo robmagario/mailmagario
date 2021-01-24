@@ -29,7 +29,6 @@ class ListProducts extends StatelessWidget {
                         Get.toNamed("/products/${createOrderController
                             .products[index].id.toString()}");
                       },
-                      //   enabled: controller.containsCart(createOrderController.products[index].id.toString()) ? false : true,
 
                     );
                 },
