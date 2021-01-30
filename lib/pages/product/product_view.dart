@@ -7,8 +7,8 @@ import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mailmagario/pages/cart/cart_riverpod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mailmagario/pages/create_order/create_order_view.dart';
 
-final cartRiverpodProvider = StateNotifierProvider((ref) => new CartRiverpod());
 
 
 class Product extends ConsumerWidget {

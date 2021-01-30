@@ -11,12 +11,19 @@ import 'package:mailmagario/services/database.dart';
 import 'package:mailmagario/pages/create_order/create_order_controller.dart';
 import 'package:mailmagario/widgets/appbar_action.dart';
 import 'package:mailmagario/pages/create_order/widgets/list_products.dart';
+import 'package:mailmagario/pages/cart/cart_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CreateOrder extends StatelessWidget {
+
+final cartRiverpodProvider = StateNotifierProvider((ref) => new CartRiverpod());
+
+class CreateOrder extends ConsumerWidget {
+  CreateOrder({Key key}) : super(key: key);
   AuthController authController = AuthController.to;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final productList = watch(cartRiverpodProvider.state);
     return GetBuilder<CreateOrderController>(
         init: CreateOrderController(),
         builder: (controller) {
@@ -31,7 +38,8 @@ class CreateOrder extends StatelessWidget {
                       CustomAppBarAction(
                             () => Get.toNamed("/cart"),
                         Feather.shopping_cart,
-                        quantity: controller.cartQuantity,
+                        //quantity: controller.cartQuantity,
+                        quantity: productList.length,
                       ),
                 ),
               ],
