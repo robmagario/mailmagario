@@ -13,7 +13,7 @@ final cartRiverpodProvider = StateNotifierProvider((ref) => new CartRiverpod());
 
 class Product extends ConsumerWidget {
   Product({Key key}) : super(key: key);
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+ // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   AuthController authController = AuthController.to;
   final productController = Get.put(ProductController());
   @override
@@ -21,16 +21,16 @@ class Product extends ConsumerWidget {
     final productList = watch(cartRiverpodProvider.state);
 
     return Scaffold(
-          key: scaffoldKey,
+        //  key: scaffoldKey,
           drawer: MyDrawer(),
           appBar: AppBar(
             title: Text('Product Detail'),
             centerTitle: true,
-            leading: IconButton(
+           /* leading: IconButton(
                 onPressed: () {
                   scaffoldKey.currentState.openDrawer();
                 },
-                icon: Icon(Icons.menu)),
+                icon: Icon(Icons.menu)),*/
             actions: <Widget>[
               IconButton(
                   icon: Icon(Icons.exit_to_app),
@@ -82,8 +82,11 @@ class Product extends ConsumerWidget {
                 ),
                 Container(
                   child: FloatingActionButton.extended(
-              //  onPressed: () {productController.addProduct();},
-                    onPressed: () {context.read(cartRiverpodProvider).add(productController.product);},
+
+                    onPressed: () {
+                      context.read(cartRiverpodProvider).add(productController.product);
+                      Navigator.pop(context);
+                      },
                 icon: Icon(Feather.shopping_cart),
                 label: Text('ADD TO CART'),
                   ),

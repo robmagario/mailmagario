@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -25,33 +24,28 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(FontAwesome5.building),
             title: Text('My HK Address'),
             onTap: () {
-              print(Get.currentRoute);
-              Get.back();
-              Get.offNamed("/");
+              Navigator.pushNamed(context, '/');
             },
           ),
           ListTile(
             leading: Icon(AntDesign.file1),
             title: Text('Create Order'),
             onTap: () {
-              Get.back();
-              Get.offNamed("/create_order");
+              Navigator.pushNamed(context, '/create_order');
             },
           ),
           ListTile(
             leading: Icon(FontAwesome5.building),
             title: Text('Manage/Create Addresses'),
             onTap: () {
-              Get.back();
-              Get.offNamed("/manage_addresses");
+              Navigator.pushNamed(context, '/manage_addresses');
             },
           ),
           ListTile(
             leading: Icon(Feather.gift),
             title: Text('Search User and create product'),
             onTap: () {
-              Get.back();
-              Get.offNamed("/search_user");
+              Navigator.pushNamed(context, '/search_user');
             },
           ),
           ListTile(
