@@ -10,6 +10,11 @@ class CartItemModel  {
     this.product = product;
     this.selected = selected;
   }
+
+  String get id {
+    return product.id;
+  }
+
   Rx<ProductModel> _product = Rx<ProductModel>();
   set product(ProductModel value) => _product.value = value;
   ProductModel get product => _product.value;

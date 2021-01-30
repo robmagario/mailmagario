@@ -5,14 +5,22 @@ import 'package:mailmagario/pages/product/product_controller.dart';
 import 'package:mailmagario/myDrawer.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mailmagario/pages/cart/cart_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Product extends StatelessWidget {
+final cartRiverpodProvider = StateNotifierProvider((ref) => new CartRiverpod());
+
+
+class Product extends ConsumerWidget {
+  Product({Key key}) : super(key: key);
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   AuthController authController = AuthController.to;
   final productController = Get.put(ProductController());
   @override
-  Widget build(BuildContext context) {
-        return Scaffold(
+  Widget build(BuildContext context, ScopedReader watch) {
+    final productList = watch(cartRiverpodProvider.state);
+
+    return Scaffold(
           key: scaffoldKey,
           drawer: MyDrawer(),
           appBar: AppBar(
@@ -74,7 +82,8 @@ class Product extends StatelessWidget {
                 ),
                 Container(
                   child: FloatingActionButton.extended(
-                onPressed: () {productController.addProduct();},
+              //  onPressed: () {productController.addProduct();},
+                    onPressed: () {context.read(cartRiverpodProvider).add(productController.product);},
                 icon: Icon(Feather.shopping_cart),
                 label: Text('ADD TO CART'),
                   ),

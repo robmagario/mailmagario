@@ -4,14 +4,18 @@ import 'package:get/get.dart';
 import 'package:mailmagario/models/cart_item.dart';
 import 'package:mailmagario/pages/cart/cart_controller.dart';
 import 'package:mailmagario/pages/cart/widgets/cart_item_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mailmagario/pages/product/product_view.dart';
 
-class CartItem extends StatelessWidget {
-  final CartController cartController = Get.find();
-  final CartItemModel cartItem;
-  CartItem(this.cartItem);
+
+class CartItem extends ConsumerWidget{
+  const CartItem({Key key}) : super(key: key);
+
+
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final cartItem = watch(cartRiverpodProvider.state);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,7 +28,8 @@ class CartItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                this.cartItem.product.productName,
+               // this.cartItem.product.productName,
+                "aaaaaa",
                 style: TextStyle(
                   fontSize: 19,
                   fontWeight: FontWeight.bold,
