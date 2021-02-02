@@ -24,28 +24,26 @@ class CreateOrder extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final productList = watch(cartRiverpodProvider.state);
-    return GetBuilder<CreateOrderController>(
-        init: CreateOrderController(),
-        builder: (controller) {
+
           return Scaffold(
             drawer: MyDrawer(),
             appBar: AppBar(
               title: Text('Create Order'),
               centerTitle: true,
-              actions: <Widget>[
-                Obx(
-                      () =>
-                      CustomAppBarAction(
-                            () => Get.toNamed("/cart"),
-                        Feather.shopping_cart,
+            //  actions: <Widget>[
+            //    Obx(
+             //         () =>
+                     // CustomAppBarAction(
+                     //       () => Get.toNamed("/cart"),
+                //        Feather.shopping_cart,
                         //quantity: controller.cartQuantity,
-                        quantity: productList.length,
-                      ),
-                ),
-              ],
+               //         quantity: productList.length,
+                  //    ),
+             //   ),
+           //   ],
             ),
             body: ListProducts(),
           );
-        });
+      //  });
   }
 }

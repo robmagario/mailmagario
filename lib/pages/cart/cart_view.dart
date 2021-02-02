@@ -11,10 +11,7 @@ import 'widgets/cart_total.dart';
 class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CartController>(
-      init: CartController(),
-      builder: (controller) {
-        return Scaffold(
+    return Scaffold(
           backgroundColor: AppColors.LIGHT,
           appBar: AppBar(
             title: Text('Cart'),
@@ -23,7 +20,6 @@ class Cart extends StatelessWidget {
           body: CartList(),
           bottomNavigationBar: CartTotal(),
         );
-      },
-    );
+
   }
 }

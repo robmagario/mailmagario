@@ -36,14 +36,5 @@ class CartList extends ConsumerWidget {
     ),
     ]);
 
-    /*   return ListView.separated(
-        padding: EdgeInsets.all(25),
-        itemCount: cartList.length,
-        separatorBuilder: (context, index) => Divider(height: 25),
-        itemBuilder: (context, index) {
-          return CartItem();
-        },
-      ); */
-
   }
 }

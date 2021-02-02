@@ -1,5 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mailmagario/models/product.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final productListStreamProvider = StreamProvider.autoDispose((_) {
+  CollectionReference ref = FirebaseFirestore.instance.collection('products');
+  return ref.snapshots().map((snapshot) {
+    final list = snapshot.docs
+        .map((document) => ProductModel.fromSnapshot(document))
+        .toList();
+    return list;
+  });
+});
 
 
 class Database {
@@ -56,6 +67,9 @@ class Database {
     return ProductModel.fromSnapshot(result);
   }
 
+
+
+  /*
   Stream<List<ProductModel>> productStream(String uid) {
     return _firestore
        /* .collection("users")
@@ -71,7 +85,7 @@ class Database {
       return retVal;
     });
   }
-
+*/
   Future<void> updateTodo(bool newValue, String uid, String todoId) async {
     try {
       _firestore

@@ -7,10 +7,10 @@ import 'package:mailmagario/constants/app_routes.dart';
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       locale: Get.deviceLocale,
       initialRoute: '/',
-      getPages: AppRoutes.routes,
+      routes: appRoutes,
       title: 'Flutter Provider Proto',
       theme: ThemeData(
         brightness: Brightness.light,

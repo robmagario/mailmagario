@@ -10,17 +10,16 @@ import 'package:mailmagario/pages/create_order/create_order_view.dart';
 import 'package:mailmagario/screens/home_screen.dart';
 import 'package:mailmagario/pages/product/product_view.dart';
 import 'package:mailmagario/pages/cart/cart_view.dart';
+import 'package:flutter/material.dart';
 
-class AppRoutes {
-  AppRoutes._(); //this is to prevent anyone from instantiating this object
-  static final routes = [
-    GetPage(name: '/', page: () => HomeScreen()),
-    GetPage(name: '/see_shipping_rates', page: () => SeeShippingRates()),
-    GetPage(name: '/create_order', page: () => CreateOrder()),
-    GetPage(name: '/search_user', page: () => SearchUser()),
-    GetPage(name: '/manage_addresses', page: () => ManageAddresses()),
-    GetPage(name: '/create_address', page: () => CreateAddress()),
-    GetPage(name: "products/:id", page: () => Product()),
-    GetPage(name: "/cart", page: () => Cart()),
-  ];
-}
+var appRoutes = <String, WidgetBuilder>{
+  '/': (context) => HomeScreen(),
+  '/see_shipping_rates': (context) => SeeShippingRates(),
+  '/create_order': (context) => CreateOrder(),
+  '/search_user': (context) => SearchUser(),
+  '/manage_addresses': (context) => ManageAddresses(),
+  '/create_address': (context) => CreateAddress(),
+  '/products/id': (context) => Product(),
+  '/cart': (context) => Cart(),
+};
+

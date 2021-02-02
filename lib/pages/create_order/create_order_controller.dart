@@ -17,13 +17,13 @@ class CreateOrderController extends GetxController {
   bool containsCart(ProductModel product){
     return appController.cartItems.contains(product);
   }
-
+/*
   @override
   void onInit() {
     String uid = Get.find<AuthController>().user.toString();
     products
         .bindStream(Database().productStream(uid)); //stream coming from firebase
   }
-
+*/
 
 }
