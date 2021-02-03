@@ -19,7 +19,7 @@ var appRoutes = <String, WidgetBuilder>{
   '/search_user': (context) => SearchUser(),
   '/manage_addresses': (context) => ManageAddresses(),
   '/create_address': (context) => CreateAddress(),
-  '/products/id': (context) => Product(),
+  '/products': (context) => Product(),
   '/cart': (context) => Cart(),
 };
 

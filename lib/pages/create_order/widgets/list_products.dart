@@ -25,8 +25,8 @@ class ListProducts extends ConsumerWidget {
                  productStream.data.value[index].weight
              .toString() + " grams"),
          onTap: () {
-              Navigator.pushNamed(context, '/products/${productStream.data.value[index].id.toString()}');
-
+             // Navigator.pushNamed(context, '/products/${productStream.data.value[index].id.toString()}');
+              Navigator.pushNamed(context, '/products', arguments: productStream.data.value[index].id.toString());
          },
          //   enabled: controller.containsCart(createOrderController.products[index].id.toString()) ? false : true,
 

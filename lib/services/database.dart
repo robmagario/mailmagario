@@ -12,9 +12,37 @@ final productListStreamProvider = StreamProvider.autoDispose((_) {
   });
 });
 
+final findOneFamily = FutureProvider.family<ProductModel, String> ((ref, String id) async {
+
+  var result = await FirebaseFirestore.instance.collection("products").doc(id).get();
+
+  return (ProductModel.fromSnapshot(result));
+});
+
+/*
+final productStreamProvider =
+StreamProvider.autoDispose.family<List,String>((_, id) {
+  CollectionReference ref = FirebaseFirestore.instance.collection('products')
+      .where("id", isEqualTo: id);
+  return ref.snapshots().map((snapshot) {
+    final product = snapshot.docs
+        .map((document) => ProductModel.fromSnapshot(document)).toList();
+    return product;
+  });
+});
+*/
 
 class Database {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<ProductModel> findOne(String id) async {
+    // var result = await _firestore.doc(id).get();
+    var result = await _firestore.collection("products").doc(id).get();
+
+    return (ProductModel.fromSnapshot(result));
+  }
+
+
 
   /*
   Future<bool> createNewUser(UserModel user) async {
@@ -61,11 +89,6 @@ class Database {
     }
   }
 
-  Future<ProductModel> findOne(String id) async {
-   // var result = await _firestore.doc(id).get();
-    var result = await _firestore.collection("products").doc(id).get();
-    return ProductModel.fromSnapshot(result);
-  }
 
 
 
