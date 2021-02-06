@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:get/get.dart';
 import 'package:mailmagario/pages/cart/cart_controller.dart';
 import 'package:mailmagario/utils/colors.dart';
 
 
 class CartTotal extends StatelessWidget {
-  final CartController controller = Get.find();
+ //final CartController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,16 +35,17 @@ class CartTotal extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Obx(
-                        () => Text(
-                      controller.total,
+                //  Obx(
+                   //     () =>
+                            Text(
+                      "TOTAL",
                       style: TextStyle(
                         fontSize: 26,
                         color: AppColors.LIGHT_GREEN,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  )
+               //  )
                 ],
               ),
             ),

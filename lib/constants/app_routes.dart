@@ -1,7 +1,3 @@
-import 'package:get/get.dart';
-import 'package:mailmagario/pages/cart/cart_controller.dart';
-import 'package:mailmagario/my_app.dart';
-import 'package:mailmagario/screens/splash_screen.dart';
 import 'package:mailmagario/see_shipping_rates.dart';
 import 'package:mailmagario/search_user.dart';
 import 'package:mailmagario/manage_addresses.dart';

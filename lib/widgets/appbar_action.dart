@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mailmagario/utils/colors.dart';
 
 class CustomAppBarAction extends StatelessWidget {
-  final Function action;
+  final String action;
   final IconData icon;
   final int quantity;
 
@@ -16,7 +16,9 @@ class CustomAppBarAction extends StatelessWidget {
         width: 50,
         height: 50,
         child: FlatButton(
-          onPressed: action,
+          onPressed: () {
+            action=="cart"?  Navigator.pushNamed(context, '/cart'):Navigator.pop(context);
+          },
           padding: EdgeInsets.zero,
           color: AppColors.WHITE,
           shape: RoundedRectangleBorder(
