@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-//import 'package:get/get.dart';
 import 'package:mailmagario/pages/product/product_controller.dart';
 import 'package:mailmagario/myDrawer.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
@@ -19,10 +18,10 @@ class Product extends ConsumerWidget {
 
  // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   AuthController authController = AuthController.to;
-//  final productController = Get.put(ProductController());
+
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    //final productList = watch(cartRiverpodProvider.state);
+
     RouteSettings settings = ModalRoute.of(context).settings;
     id = settings.arguments;
     final productStream = watch(findOneFamily(id));
@@ -81,7 +80,7 @@ class Product extends ConsumerWidget {
                   child: FloatingActionButton.extended(
 
                     onPressed: () {
-                      //context.read(cartRiverpodProvider).add(productController.product);
+                      context.read(cartRiverpodProvider).add(productStream.data.value);
                       Navigator.pop(context);
                       },
                 icon: Icon(Feather.shopping_cart),
