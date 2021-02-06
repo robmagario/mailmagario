@@ -9,8 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mailmagario/pages/create_order/create_order_view.dart';
 import 'package:mailmagario/services/database.dart';
 
-
-
 class Product extends ConsumerWidget {
   Product({Key key}) : super(key: key);
   String id;

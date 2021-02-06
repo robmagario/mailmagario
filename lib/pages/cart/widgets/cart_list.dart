@@ -13,17 +13,18 @@ class CartList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final cartList = watch(cartRiverpodProvider.state);
+
+    final productList = watch(cartRiverpodProvider.state);
     return Column(
       children: [
       Container(
       height: 100,
       child: ListView.builder(
-        itemCount: cartList.length,
+        itemCount: productList.length,
         itemBuilder: (BuildContext context, int index) {
-          CartItemModel cartItem = cartList[index];
+          CartItemModel cartItem = productList[index];
           return ListTile(
-            title: Text(cartList[index].product.productName),
+            title: Text(productList[index].product.productName),
             trailing: IconButton(
               icon: Icon(Icons.delete),
               // 3
