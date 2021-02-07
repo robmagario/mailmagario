@@ -41,6 +41,7 @@ dev_dependencies:
   geolocator: ^6.1.6
   geocoder: ^0.2.1
   flutter_riverpod: ^0.12.2
+  timeago: ^2.0.29
 
 flutter_icons:
   android: "launcher_icon"
