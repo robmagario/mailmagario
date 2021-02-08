@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mailmagario/pages/create_order/create_order_controller.dart';
-import 'package:mailmagario/constants/app_routes.dart';
-import 'package:mailmagario/pages/product/product_view.dart';
 import 'package:mailmagario/services/database.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
