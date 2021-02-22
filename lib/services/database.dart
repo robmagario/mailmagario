@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mailmagario/models/product.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final productListStreamProvider = StreamProvider.autoDispose((_) {
+
+
+final productListStreamProvider = StreamProvider.autoDispose<List<ProductModel>>((ref) {
   CollectionReference ref = FirebaseFirestore.instance.collection('products');
   return ref.snapshots().map((snapshot) {
     final list = snapshot.docs
@@ -12,6 +14,14 @@ final productListStreamProvider = StreamProvider.autoDispose((_) {
   });
 });
 
+/*
+final deleteProduct = FutureProvider.family<ProductModel, String> ((ref, String id) async {
+
+  List productStream = await ref.watch(productListStreamProvider);
+
+  //return (ProductModel.fromSnapshot(result));
+});
+*/
 final findOneFamily = FutureProvider.family<ProductModel, String> ((ref, String id) async {
 
   var result = await FirebaseFirestore.instance.collection("products").doc(id).get();
@@ -90,7 +100,22 @@ class Database {
   }
 
 
+/*
 
+  Future<void> _delete(BuildContext context, Job job) async {
+    try {
+      final database = context.read(databaseProvider);
+      await database.deleteJob(job);
+    } catch (e) {
+      unawaited(showExceptionAlertDialog(
+        context: context,
+        title: 'Operation failed',
+        exception: e,
+      ));
+    }
+  }
+}
+*/
 
   /*
   Stream<List<ProductModel>> productStream(String uid) {

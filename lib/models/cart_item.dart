@@ -15,6 +15,7 @@ class CartItemModel  {
     return product.id;
   }
 
+
   Rx<ProductModel> _product = Rx<ProductModel>();
   set product(ProductModel value) => _product.value = value;
   ProductModel get product => _product.value;

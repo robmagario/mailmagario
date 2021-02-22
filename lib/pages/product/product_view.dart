@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:mailmagario/models/product.dart';
 import 'package:mailmagario/pages/product/product_controller.dart';
 import 'package:mailmagario/myDrawer.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
@@ -8,6 +9,7 @@ import 'package:mailmagario/pages/cart/cart_riverpod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mailmagario/pages/create_order/create_order_view.dart';
 import 'package:mailmagario/services/database.dart';
+
 
 class Product extends ConsumerWidget {
   Product({Key key}) : super(key: key);
@@ -23,7 +25,10 @@ class Product extends ConsumerWidget {
     RouteSettings settings = ModalRoute.of(context).settings;
     id = settings.arguments;
     final productStream = watch(findOneFamily(id));
+    final cartList = watch(cartRiverpodProvider.state);
+   // ProductModel productModel = productStream;
 
+    final snackBar = SnackBar(content: Text("Hey, this item has already been added to your shopping cart and can't be added again!"));
 
     return Scaffold(
         //  key: scaffoldKey,
@@ -78,11 +83,19 @@ class Product extends ConsumerWidget {
                   child: FloatingActionButton.extended(
 
                     onPressed: () {
-                      context.read(cartRiverpodProvider).add(productStream.data.value);
-                      Navigator.pop(context);
-                      },
-                icon: Icon(Feather.shopping_cart),
-                label: Text('ADD TO CART'),
+
+                      context.read(cartRiverpodProvider).add(
+                           productStream.data.value);
+
+                            Navigator.pop(context);
+
+
+                      // Scaffold.of(context).showSnackBar(snackBar);
+
+                    },
+
+                  icon: Icon(Feather.shopping_cart),
+                  label: Text('ADD TO CART'),
                   ),
                 ),
               ],

@@ -1,27 +1,33 @@
 import 'package:get/state_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:riverpod/riverpod.dart';
 
 class ProductModel {
-  ProductModel({
-   String id,
-   String productName,
-   double weight,
-   String receivedTrackingNumber,
-   String sentTrackingNumber,
-   String userId,
-   Timestamp createdOn,
-  }) {
-    this.id = id;
-    this.productName = productName;
-    this.weight = weight;
-    this.receivedTrackingNumber = receivedTrackingNumber;
-    this.sentTrackingNumber = sentTrackingNumber;
-    this.userId = userId;
-    this.createdOn = createdOn;
-  }
+  String id;
+  String productName;
+   double weight;
+   String receivedTrackingNumber;
+   String sentTrackingNumber;
+   String userId;
+   Timestamp createdOn;
+   bool ordered;
+
+   ProductModel ({
+   this.id,
+   this.productName,
+   this.weight,
+   this.receivedTrackingNumber,
+   this.sentTrackingNumber,
+   this.userId,
+   this.createdOn,
+   this.ordered = false
+});
 
 
+
+
+/*
    RxString _id = RxString();
    set id(String value) => _id.value = value;
    String get id => _id.value;
@@ -49,7 +55,7 @@ class ProductModel {
     Rx<Timestamp> _createdOn = Rx<Timestamp>();
     set createdOn(Timestamp value) => _createdOn.value = value;
     Timestamp get createdOn => _createdOn.value;
-
+*/
 
 
 

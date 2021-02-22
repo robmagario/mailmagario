@@ -1,19 +1,45 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mailmagario/models/cart_item.dart';
 import "package:mailmagario/models/product.dart";
+import 'package:mailmagario/services/database.dart';
 
 
 class CartRiverpod extends StateNotifier<List<CartItemModel>> {
-  // 3
-  CartRiverpod([List<CartItemModel> products]) : super(products ?? []);
 
-  // 4
-  void add(ProductModel product) {
-    state = [...state, new CartItemModel(product:product)];
-    print ("added");
-  }
-  // 4
-  /*
+  CartRiverpod([List<CartItemModel> products]) : super(products ?? []);
+ // final productStream = FutureProvider<List<ProductModel>>((ref) async {
+ //   final ListofProducts = await ref.watch(productListStreamProvider);
+ // });
+  //final productStream = ref.watch(productListStreamProvider);
+
+
+
+    void add(ProductModel addProduct) {
+      bool productExists = false;
+
+        for (final product in state) {
+          if (product.id == addProduct.id) {
+            print("not added");
+            productExists = true;
+          }
+      else {
+
+          }
+    }
+        if (productExists==false)
+      {
+        state = [
+          ...state, new CartItemModel(product: addProduct),
+        ];
+        print("added");
+      }
+
+    }
+
+
+
+    // 4
+    /*
   void toggle(String id) {
     state = [
       for (final product in state)
@@ -27,7 +53,8 @@ class CartRiverpod extends StateNotifier<List<CartItemModel>> {
           product,
     ];
   }
-  // 4
+  */
+/*
   void edit(Todo updatedTodo) {
     state = [
       for (final todo in state)
@@ -43,8 +70,8 @@ class CartRiverpod extends StateNotifier<List<CartItemModel>> {
   }
 
    */
-  // 4
-  void remove(String id) {
-    state = state.where((product) => product.id != id).toList();
+    // 4
+    void remove(String id) {
+      state = state.where((product) => product.id != id).toList();
+    }
   }
-}
