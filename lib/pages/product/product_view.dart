@@ -32,6 +32,7 @@ class Product extends ConsumerWidget {
 
     return Scaffold(
         //  key: scaffoldKey,
+
           drawer: MyDrawer(),
           appBar: AppBar(
             title: Text('Product Detail'),

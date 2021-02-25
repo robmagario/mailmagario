@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mailmagario/constants/app_routes.dart';
+import 'package:one_context/one_context.dart';
 
 
 
@@ -8,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: OneContext().builder,
       locale: Get.deviceLocale,
       initialRoute: '/',
       routes: appRoutes,

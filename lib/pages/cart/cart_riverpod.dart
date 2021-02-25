@@ -2,7 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mailmagario/models/cart_item.dart';
 import "package:mailmagario/models/product.dart";
 import 'package:mailmagario/services/database.dart';
-
+import 'package:one_context/one_context.dart';
+import 'package:flutter/material.dart';
 
 class CartRiverpod extends StateNotifier<List<CartItemModel>> {
 
@@ -21,6 +22,9 @@ class CartRiverpod extends StateNotifier<List<CartItemModel>> {
           if (product.id == addProduct.id) {
             print("not added");
             productExists = true;
+            OneContext().showSnackBar(
+                builder: (_) => SnackBar(content: Text('Item was already in shopping cart and cannot be added again!'), backgroundColor:Colors.red)
+            );
           }
       else {
 
