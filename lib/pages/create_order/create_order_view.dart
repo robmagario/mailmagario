@@ -7,9 +7,22 @@ import 'package:mailmagario/pages/create_order/widgets/list_products.dart';
 import 'package:mailmagario/pages/cart/cart_riverpod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-//final cartRiverpodProvider = StateNotifierProvider((ref) => new CartRiverpod());
 final cartRiverpodProvider = StateNotifierProvider((ref) => new CartRiverpod());
+
+final totalProvider = Provider((ref) {
+  double weight = 0;
+  final cart = ref.watch(cartRiverpodProvider.state);
+  for (final product in cart) {
+    weight = weight + product.weight;
+  }
+  return weight;
+});
+       //  for (final product in .watch(cartRiverpodProvider.state) {
+
+ // return ref
+  //    .watch(cartRiverpodProvider.state)
+  //    .length.toString();
+
 
 class CreateOrder extends ConsumerWidget {
   CreateOrder({Key key}) : super(key: key);
@@ -28,6 +41,7 @@ class CreateOrder extends ConsumerWidget {
                       CustomAppBarAction("cart",
                        Feather.shopping_cart,
                         quantity: productList.length,
+
                   //    ),
                      ),
              ],),

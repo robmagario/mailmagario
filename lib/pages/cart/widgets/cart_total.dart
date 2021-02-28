@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:mailmagario/pages/cart/cart_controller.dart';
 import 'package:mailmagario/utils/colors.dart';
+import 'package:flutter/material.dart';
+import 'package:mailmagario/models/cart_item.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mailmagario/pages/create_order/create_order_view.dart';
+import 'package:intl/intl.dart';
 
+class CartTotal extends ConsumerWidget  {
 
-class CartTotal extends StatelessWidget {
- //final CartController controller = Get.find();
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final cart = watch(cartRiverpodProvider);
+    final total = watch(totalProvider);
+    var f = new NumberFormat("#,###", "en_US");
+
     return Container(
       padding: EdgeInsets.all(25),
       decoration: BoxDecoration(
@@ -38,7 +46,9 @@ class CartTotal extends StatelessWidget {
                 //  Obx(
                    //     () =>
                             Text(
-                      "TOTAL",
+                           //   f.format(totalProvider),
+                              total.toString(),
+
                       style: TextStyle(
                         fontSize: 26,
                         color: AppColors.LIGHT_GREEN,

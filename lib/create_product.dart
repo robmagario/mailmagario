@@ -143,7 +143,7 @@ void createRecord(String productNameController, String weightController, String 
   await databaseReference.collection("products")
       .add({
     'productName': productNameController,
-    'weight': double.parse(weightController),
+    'weight': int.parse(weightController),
     'receivedTrackingNumber': receivedTrackingNumberController,
     'userId' : userId,
     'createdOn':FieldValue.serverTimestamp(),

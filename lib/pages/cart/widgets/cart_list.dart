@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mailmagario/models/cart_item.dart';
-import 'package:mailmagario/pages/cart/cart_controller.dart';
-import 'package:mailmagario/pages/cart/cart_riverpod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mailmagario/pages/product/product_view.dart';
 import 'package:mailmagario/pages/create_order/create_order_view.dart';
 import 'package:timeago/timeago.dart' as timeago;
 

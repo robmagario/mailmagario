@@ -8,12 +8,8 @@ import 'package:flutter/material.dart';
 class CartRiverpod extends StateNotifier<List<CartItemModel>> {
 
   CartRiverpod([List<CartItemModel> products]) : super(products ?? []);
- // final productStream = FutureProvider<List<ProductModel>>((ref) async {
- //   final ListofProducts = await ref.watch(productListStreamProvider);
- // });
-  //final productStream = ref.watch(productListStreamProvider);
 
-
+  double weight = 0;
 
     void add(ProductModel addProduct) {
       bool productExists = false;
@@ -23,7 +19,7 @@ class CartRiverpod extends StateNotifier<List<CartItemModel>> {
             print("not added");
             productExists = true;
             OneContext().showSnackBar(
-                builder: (_) => SnackBar(content: Text('Item was already in shopping cart and cannot be added again!'), backgroundColor:Colors.red)
+                builder: (_) => SnackBar(content: Text('Item is already in shopping cart and cannot be added again!'), backgroundColor:Colors.red)
             );
           }
       else {
@@ -40,6 +36,13 @@ class CartRiverpod extends StateNotifier<List<CartItemModel>> {
 
     }
 
+  double totalWeight() {
+
+    for (final product in state) {
+      weight += product.product.weight;
+    }
+
+  }
 
 
     // 4
@@ -76,6 +79,9 @@ class CartRiverpod extends StateNotifier<List<CartItemModel>> {
    */
     // 4
     void remove(String id) {
-      state = state.where((product) => product.id != id).toList();
+      List newList = state.where((product) => product.id != id).toList();
+      state = [...newList];
+
+
     }
   }
