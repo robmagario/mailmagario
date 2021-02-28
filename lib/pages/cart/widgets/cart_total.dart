@@ -43,8 +43,8 @@ class CartTotal extends ConsumerWidget  {
                 //  Obx(
                    //     () =>
                             Text(
-                           //   f.format(totalProvider),
-                              total.toString(),
+                             "${f.format(total)} grams",
+
 
                       style: TextStyle(
                         fontSize: 26,
