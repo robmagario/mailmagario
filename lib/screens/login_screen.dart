@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:get/get.dart';
-
+import 'package:mailmagario/pages/auth/auth_providers.dart';
+import 'package:mailmagario/pages/auth/login_page_providers.dart';
+import 'package:flutter_riverpod/all.dart';
 
 enum FormMode { LOGIN, SIGNUP }
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget  {
   final AuthController authController = AuthController.to;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -35,7 +37,10 @@ class LoginScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final email = watch(emailProvider).state;
+    final pass = watch(passwordProvider).state;
+    final _auth = watch(authServicesProvider);
     return Scaffold(resizeToAvoidBottomPadding: false,
       key: _key,
       appBar: AppBar(
@@ -49,9 +54,10 @@ class LoginScreen extends StatelessWidget {
             formWidget(),
             RaisedButton(
               onPressed:  _formMode == FormMode.LOGIN
-                 ? () async {
+                 ? _auth.signIn(email: email, password: pass)
+              /*() async {
                 authController.signInWithEmailAndPassword(context);
-              }
+              }*/
               :() async {
                 // this is temporary because I have not coded the sign up part yet
                 authController.signInWithEmailAndPassword(context);

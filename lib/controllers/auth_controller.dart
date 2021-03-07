@@ -93,16 +93,6 @@ class AuthController extends GetxController {
           .then((result) async {
         print('uID: ' + result.user.uid);
         print('email: ' + result.user.email);
-
-        //create the new user object
-      /*  UserModel _newUser = UserModel(
-            uid: result.user.uid,
-            email: result.user.email,
-            firstName: firstNameController.text,
-            familyName: familyNameController.text,
-            photoUrl: gravatarUrl);*/
-        //create the user in firestore
-      //  _createUserFirestore(_newUser, result.user);
         emailController.clear();
         passwordController.clear();
       //  hideLoadingIndicator();
