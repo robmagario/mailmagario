@@ -1,30 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mailmagario/my_app.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:get/get.dart';
-import 'package:mailmagario/controllers/auth_controller.dart';
-import 'package:mailmagario/controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-/*
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
- // await initServices();
-  Get.put<AuthController>(AuthController());
-  Get.put<AppController>(AppController());
-  //runApp(MyApp());
-  runApp(
-    ProviderScope(
-      child: MyApp(),
-    ),
-  );
-}
-
- */
-
 import 'package:mailmagario/pages/auth/auth_providers.dart';
 import 'package:mailmagario/screens/home_screen.dart';
 import 'package:mailmagario/screens/login_page.dart';
+import 'package:mailmagario/theme_data.dart';
 
 
 void main() {
@@ -38,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: StartPage(),
+      theme: myTheme,
     );
   }
 }

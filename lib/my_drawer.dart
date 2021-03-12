@@ -5,6 +5,7 @@ import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mailmagario/pages/auth/auth_providers.dart';
+import 'package:mailmagario/theme_data.dart';
 
 class MyDrawer extends ConsumerWidget {
 
@@ -21,8 +22,8 @@ class MyDrawer extends ConsumerWidget {
         children: <Widget>[
           DrawerHeader(
             child: Text('Stork Menu'),
-            decoration: BoxDecoration(
-              color: Colors.orange,
+           decoration: BoxDecoration(
+              color: myTheme.primaryColor,
             ),
           ),
           ListTile(

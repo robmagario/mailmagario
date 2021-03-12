@@ -1,17 +1,18 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mailmagario/myDrawer.dart';
+import 'package:mailmagario/my_drawer.dart';
 import 'package:flutter_clipboard_manager/flutter_clipboard_manager.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
-import 'package:get/get.dart';
+import 'package:mailmagario/pages/auth/auth_providers.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
 //  final User user;
-  final AuthController authController = AuthController.to;
+ // final AuthController authController = AuthController.to;
 //  const HomeScreen({Key key, this.user}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final _auth = watch(authServicesProvider);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -20,9 +21,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(FontAwesome.sign_out),
             tooltip: 'logout',
-            onPressed: () {
-              authController.signOut();
-            },
+            onPressed: () =>  _auth.signout(),
           )],
 
       ),
@@ -121,7 +120,7 @@ class HomeScreen extends StatelessWidget {
                                 Scaffold.of(context).showSnackBar(snackBar);
                               });
                             },
-                            color: Colors.orange,
+                         //   color: Colors.orange,
                           )
                           ) ],
                       ),
@@ -205,7 +204,7 @@ class HomeScreen extends StatelessWidget {
                                     Scaffold.of(context).showSnackBar(snackBar);
                                   });
                                 },
-                                color: Colors.orange,
+                            //    color: Colors.orange,
                               )
                           ) ],
                       ),

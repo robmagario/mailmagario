@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:mailmagario/myDrawer.dart';
+import 'package:mailmagario/my_drawer.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 

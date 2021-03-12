@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mailmagario/models/product.dart';
 import 'package:mailmagario/pages/product/product_controller.dart';
-import 'package:mailmagario/myDrawer.dart';
+import 'package:mailmagario/my_drawer.dart';
 import 'package:mailmagario/controllers/auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mailmagario/pages/cart/cart_riverpod.dart';
