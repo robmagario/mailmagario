@@ -24,11 +24,22 @@ class LoginPage extends ConsumerWidget {
   }
 
 
+  void _toggleObscureText(_obscureText) {
+  //  setState(() {
+      _obscureText = !_obscureText;
+      if (_obscureText == true) {
+        _iconVisible = Icons.visibility_off;
+      } else {
+        _iconVisible = Icons.visibility;
+      }
+   // });
+  }
 
   @override
   Widget build(BuildContext context, ScopedReader watch)  {
     final email = watch(emailProvider).state;
     final pass = watch(passwordProvider).state;
+
     final _auth = watch(authServicesProvider);
     return Scaffold(
         backgroundColor: _backgroundColor,
@@ -75,11 +86,11 @@ class LoginPage extends ConsumerWidget {
                   ),
                   labelText: 'Password',
                   labelStyle: TextStyle(color: Colors.white),
-                  suffixIcon: IconButton(
+                  /*suffixIcon: IconButton(
                       icon: Icon(_iconVisible, color: Colors.white, size: 20),
                       onPressed: () {
-                     //   _toggleObscureText();
-                      }),
+                        _toggleObscureText(_obscureText);
+                      }),*/
                 ),
               ),
               SizedBox(
