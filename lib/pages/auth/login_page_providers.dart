@@ -8,5 +8,9 @@ final passwordProvider = StateProvider<String>((ref) {
   return null;
 });
 
+final obscureProvider = StateProvider<bool>((ref) {
+  return true;
+});
+
 
 

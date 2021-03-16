@@ -6,11 +6,13 @@ import 'package:flutter_riverpod/all.dart';
 import 'package:flutter/services.dart';
 import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:mailmagario/theme_data.dart';
 
 class LoginPage extends ConsumerWidget {
-  bool _obscureText = true;
-  IconData _iconVisible = Icons.visibility_off;
 
+ // bool _obscureText = true;
+  IconData _iconVisible = Icons.visibility_off;
+  IconData _iconInvisible = Icons.visibility;
   Color _backgroundColor = Color(0xFFE43F3F);
   Color _underlineColor = Color(0xFFCCCCCC);
   Color _buttonColor = Color(0xFFCC1D1D);
@@ -24,25 +26,16 @@ class LoginPage extends ConsumerWidget {
   }
 
 
-  void _toggleObscureText(_obscureText) {
-  //  setState(() {
-      _obscureText = !_obscureText;
-      if (_obscureText == true) {
-        _iconVisible = Icons.visibility_off;
-      } else {
-        _iconVisible = Icons.visibility;
-      }
-   // });
-  }
 
   @override
   Widget build(BuildContext context, ScopedReader watch)  {
     final email = watch(emailProvider).state;
     final pass = watch(passwordProvider).state;
+    final obscure = watch(obscureProvider).state;
 
     final _auth = watch(authServicesProvider);
     return Scaffold(
-        backgroundColor: _backgroundColor,
+        backgroundColor:  _backgroundColor,
         body: AnnotatedRegion<SystemUiOverlayStyle>(
           value: Platform.isIOS?SystemUiOverlayStyle.light:SystemUiOverlayStyle(
               statusBarIconBrightness: Brightness.light
@@ -75,7 +68,7 @@ class LoginPage extends ConsumerWidget {
               ),
               TextField(
                 onChanged: (value) => updatePassword(context, value),
-                obscureText: _obscureText,
+                obscureText: obscure,
                 style: TextStyle(color: Colors.white),
                 cursorColor: Colors.white,
                 decoration: InputDecoration(
@@ -86,11 +79,12 @@ class LoginPage extends ConsumerWidget {
                   ),
                   labelText: 'Password',
                   labelStyle: TextStyle(color: Colors.white),
-                  /*suffixIcon: IconButton(
-                      icon: Icon(_iconVisible, color: Colors.white, size: 20),
+                  suffixIcon: IconButton(
+                      icon: (context.read(obscureProvider).state==true)?Icon(_iconVisible, color: Colors.white, size: 20):
+                      Icon(_iconInvisible, color: Colors.white, size: 20),
                       onPressed: () {
-                        _toggleObscureText(_obscureText);
-                      }),*/
+                        context.read(obscureProvider).state = !context.read(obscureProvider).state;
+                      }),
                 ),
               ),
               SizedBox(
@@ -125,7 +119,6 @@ class LoginPage extends ConsumerWidget {
                 textColor: Colors.white,
                 color: _buttonColor,
                 onPressed: (){
-                  //Fluttertoast.showToast(msg: 'Click login', toastLength: Toast.LENGTH_SHORT);
                   _auth.signIn(email: email, password: pass);
                 },
                 child: Text('LOGIN', style: TextStyle(
@@ -135,15 +128,15 @@ class LoginPage extends ConsumerWidget {
               SizedBox(
                 height: 32,
               ),
-              Center(
+             /* Center(
                 child: Text('Sign in with', style: TextStyle(
                     fontSize: 15, color: Colors.white
                 )),
-              ),
+              ),*/
               SizedBox(
                 height: 32,
               ),
-              Container(
+             /* Container(
                 margin: EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -188,7 +181,7 @@ class LoginPage extends ConsumerWidget {
                     ),
                   ],
                 ),
-              ),
+              ),*/
               SizedBox(
                 height: 60,
               ),
